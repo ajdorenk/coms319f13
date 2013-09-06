@@ -2,3 +2,39 @@ Iowa State University
 Com S 319 Fall 2013
 
 TextbookTrader
+
+Group Members:
+Bryan, Taylor, Austin, Erich
+
+Bootstrap:
+Badges
+Navbar
+Navs
+Jumbotron
+Pagination
+Button groups
+Button dropdowns
+Input groups
+
+****Ideas for Site****
+
+1. Should we have a seller rating and a buyer rating?
+	Yes - Bryan, Erich, Austin (but still keep anonomyous buying, can rate a buyer who has an account but cant rate anonomyous buyers)
+	No - 
+
+2. What info should we collect from users for account?
+	-Name (First, Last)
+	-School Attending -> maybe check from email
+	-Major
+	-Collect Birthday, maybe only reveal the age to public
+	-Email Address 
+	-Timestamp of account creation
+
+3. For accounts setup keep track of:
+	-Ratings
+	-Views
+	-Number of transactions participated in
+
+4. X number of days after transaction takes place, send email to users asking to fill out survey about how the transaction went.  
+	-In survey, ask the party to rate the other party
+	-Automate this process.
