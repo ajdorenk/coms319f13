@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Search Results</title>
+<link href="resultsStyle.css" rel="stylesheet" type="test/css">
+<link href="style.css" rel="stylesheet" type="text/css"><!--[if lte IE 7]>
+<style>
+.content { margin-right: -1px; } /* this 1px negative margin can be placed on any of the columns in this layout with the same corrective effect. */
+ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it needs to correct extra whiltespace between the links */
+</style>
+<![endif]-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="resultsScript.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="header"><a href="#"><img src="" alt="Insert Logo Here" name="Insert_logo" width="20%" height="90" id="Insert_logo" style="background-color: #8090AB; display:block;" /></a> 
+    <!-- end .header --></div>
+  <div class="sidebar1">
+    <ul class="nav">
+      <li><a href="#">Link one</a></li>
+      <li><a href="#">Link two</a></li>
+      <li><a href="#">Link three</a></li>
+      <li><a href="#">Link four</a></li>
+    </ul>
+    <p> </p>
+    <!-- end .sidebar1 --></div>
+  <div class="content">
+    <div class="advSearch">
+      Search by:
+      <select>
+        <option value="anything"></option>
+        <option value="itemName">Item Name</option> 
+        <option value="isbn">ISBN</option>               
+      </select>  
+      <form>
+        <input type="text" name="searchText" value="Search...">
+        <input type="submit" name="searchNow" value="Go">
+      </form>
+    </div>
+    <div class="resultsPane itemFont">
+      <div class="itemPhoto">
+        <img src="http://www.nationalbookauctions.com/SmallBookIcon.jpg" alt="Book">
+      </div>
+      <div class="itemName itemFont">
+        Discrete Mathematics with Applications
+      </div>
+      <div class="itemDescripShort itemFont">
+        Used in Cpr E 310 
+      </div>
+      <div class="itemSeller itemFont">
+        Austin Dorenkamp
+      </div>
+      <div class="itemPrice itemFont">
+        $90
+      </div>
+    </div>
+
+
+    <h1>Instructions</h1>
+    <p></p>
+    <h2>Clearing Method</h2>
+    <p></p>
+    <h3>Logo Replacement</h3>
+    <p></p>
+    <h4>Internet Explorer Conditional Comments</h4>
+    <p></p>
+    <ol>
+      <li></li>
+      <li></li>
+    </ol>
+    <h4>Backgrounds</h4>
+    <p></p>
+    <!-- end .content --></div>
+  <div class="footer">
+    <p>This .footer contains the declaration position:relative; to give Internet Explorer 6 hasLayout for the .footer and cause it to clear correctly. If you're not required to support IE6, you may remove it.</p>
+    <!-- end .footer --></div>
+  <!-- end .container --></div>
+</body>
+</html>

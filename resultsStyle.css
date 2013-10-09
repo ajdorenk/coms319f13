@@ -1,0 +1,36 @@
+.advSearch {
+	margin-left: 10px;
+	height: 50px;
+}
+
+form {
+	display: inline;
+}
+
+.resultsPane {
+	margin-left: 10px;
+}
+
+.itemName {
+	display: inline;
+
+}
+
+.itemDescripShort {
+	display: inline;
+
+}
+
+.itemSeller {
+	display: inline;
+
+}
+
+.itemPrice {
+	display: inline;
+
+}
+
+.itemFont {
+	font-size: small;
+}
