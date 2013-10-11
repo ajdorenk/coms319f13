@@ -1,0 +1,9 @@
+@charset "UTF-8";
+.form label {
+display: inline-block;
+padding-left: 75px;
+}
+
+.buttons {
+padding-left: 100px;
+}
