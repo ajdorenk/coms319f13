@@ -28,34 +28,12 @@ form {
 	margin-top: 20px;
 }
 
-/*.itemNamePopup {
-	display: none;
-	border: 1px solid black;
-	width: 150px;
-}*/
-
-/*.itemName .itemNamePopup {
-	display: none;
-}
-
-.itemName:hover .itemNamePopup {
-	display: block;
-}*/
-
 .itemDescripShort {
 	display: inline;
 	position: relative;
 	float: left;
 	margin: 10px;
-	margin-top: 20px;
-}
-
-.itemSeller {
-	display: inline;
-	position: relative;
-	float: left;
-	margin: 10px;
-	margin-top: 20px;
+	margin-top: 25px;
 }
 
 .itemPrice {
@@ -68,4 +46,8 @@ form {
 
 .itemFont {
 	font-size: 16px;
+}
+
+.itemDescriptionFont {
+	font-size: 12px;
 }

@@ -1,38 +1,95 @@
-$(document).ready(function() {
+// $(document).ready(function() {
+// 	$(function() {
+//     	$( document ).tooltip();
+//   	});
+// })
 
-	var $item1Arr = {itemName: 'Discrete Mathematics with Applications', 
-		itemDescripShort: "Used for Cpr E 310", itemSeller: 'Austin Dorenkamp', 
-		itemPrice: 90};
+	var $itemAllArr = new Array();
+	$itemAllArr[0] = {itemName: 'Discrete Mathematics with Applications', 
+		itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
+	$itemAllArr[1] = {itemName: 'Discrete Mathematics with Applications', 
+		itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
+	$itemAllArr[2] = {itemName: 'Discrete Mathematics with Applications', 
+		itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
+	$itemAllArr[3] = {itemName: 'Discrete Mathematics with Applications', 
+		itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
+	$itemAllArr[4] = {itemName: 'Discrete Mathematics with Applications', 
+		itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
+	$itemAllArr[5] = {itemName: 'Discrete Mathematics with Applications', 
+		itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
+	$itemAllArr[6] = {itemName: 'Discrete Mathematics with Applications', 
+		itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
+	$itemAllArr[7] = {itemName: 'Discrete Mathematics with Applications', 
+		itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
 
-	$(function() {
-    	$( document ).tooltip();
-  	});
+  	function resultsPaneGenerator() {
 
-  	$('.itemSeller').attr("title", 'Austin Dorenkamp tooltip');
+  		var $returnStr = "";
+  		var $content = "";
+  		var $ttTitle = '';
+	  	for(var $i = 0; $i<$itemAllArr.length; $i++) {
+		  	
+			if($itemAllArr[$i]['itemName'].length > 25) {
+				$content = ($itemAllArr[$i]['itemName'].substring(0,25) + "...");
+				$ttTitle = ($itemAllArr[$i]['itemName']);
+			} else {
+				$content = ($itemAllArr[$i]['itemName']);
+				$ttTitle = '';
+			}
 
-	$itemName = $('.itemName');
-	if($item1Arr['itemName'].length > 15) {
-		$itemName.html($item1Arr['itemName'].substring(0,15) + "...");
-		$itemName.attr('title',$item1Arr['itemName']);
-	} else {
-		$itemName.html($item1Arr['itemName']);
-	}
+			$returnStr += '<div class="resultsPane itemFont">'
+		        + '<div class="itemPhoto">'
+		          + '<img src="http://www.nationalbookauctions.com/SmallBookIcon.jpg" alt="Book">'
+		        + '</div>'
+		        + '<div class="itemName itemFont" title="';
+					$returnStr += $ttTitle;
+		    	$returnStr += '">';
+		    		$returnStr += $content;
+		    	$returnStr += '</div>';
 
-	$itemDescripShort = $('.itemDescripShort');
-	if($item1Arr['itemDescripShort'].length > 15) {
-		$itemDescripShort.html($item1Arr['itemDescripShort'].substring(0,15) + "...");
-		$itemDescripShort.attr('title',$item1Arr['itemDescripShort']);
-	} else {
-		$itemDescripShort.html($item1Arr['itemName']);
-	}
+			if($itemAllArr[$i]['itemDescripShort'].length > 25) {
+				$content = ($itemAllArr[$i]['itemDescripShort'].substring(0,25) + "...");
+				$ttTitle = ($itemAllArr[$i]['itemDescripShort']);
+			} else {
+				$content = ($itemAllArr[$i]['itemDescripShort']);
+				$ttTitle = '';
+			}
+		    	$returnStr += '<div class="itemDescripShort itemDescriptionFont"'
+		    		+ $ttTitle +'>' + $content + '</div>';
 
-	$itemSeller = $('.itemSeller');
-	if($item1Arr['itemSeller'].length > 15) {
-		$itemSeller.html($item1Arr['itemSeller'].substring(0,15) + "...");
-		$itemSeller.attr('title',$item1Arr['itemSeller']);
-	} else {
-		$itemSeller.html($item1Arr['itemName']);
-	}
+		    	$returnStr += '<div class="itemPrice itemFont">'
+		    		+ $itemAllArr[$i]['itemPrice'] + '</div>';
+		    $returnStr += '</div>';
+		    // alert($returnStr);
+		}
+		alert($returnStr);
+	    return $returnStr;
+
+	}		
+
+			// $itemName = $('.itemName');
+			// if($itemAllArr[$i]['itemName'].length > 25) {
+			// 	$itemName.html($itemAllArr[$i]['itemName'].substring(0,25) + "...");
+			// 	$itemName.attr('title',$itemAllArr[$i]['itemName']);
+			// } else {
+			// 	$itemName.html($itemAllArr[$i]['itemName']);
+			// }
+
+			// $itemDescripShort = $('.itemDescripShort');
+			// if($itemAllArr[$i]['itemDescripShort'].length > 30) {
+			// 	$itemDescripShort.html($itemAllArr[$i]['itemDescripShort'].substring(0,30) + "...");
+			// 	$itemDescripShort.attr('title',$itemAllArr[$i]['itemDescripShort']);
+			// } else {
+			// 	$itemDescripShort.html($itemAllArr[$i]['itemDescripShort']);
+			// }
+
+			// $itemPrice = $('.itemPrice');
+			// $itemPrice.html('$' + $itemAllArr[$i]['itemPrice']);
+
+
+
+
+
 
 	// $('.resultsPaneArr').append(
 	// 	<div class="resultsPane itemFont">
@@ -81,5 +138,3 @@ $(document).ready(function() {
 	// 	document.getElementById(key).innerHTML=item1Arr[key];
 	// 	alert($item1Arr[key]);
 	// }
-
-})
