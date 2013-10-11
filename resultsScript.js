@@ -11,14 +11,36 @@ $(document).ready(function() {
 		$itemName.html($item1Arr['itemName']);
 	}
 
-	$itemName.hover(
-		function(e) {
-			$('.itemNamePopup').show();
-		},
-		function(e) {
-			$('itenNamePopup').hide();
-		}
-	);
+	// $('.resultsPaneArr').append(
+	// 	<div class="resultsPane itemFont">
+ //        <div class="itemPhoto">
+ //          <img src="http://www.nationalbookauctions.com/SmallBookIcon.jpg" alt="Book">
+ //        </div>
+ //        <div class="itemName itemFont">
+ //          // <!-- Discrete Mathematics with Applications -->
+ //          Discrete Matheme...
+ //          // <div class="itemNamePopup" style="display: none">Sample popup test</div>
+ //        </div>
+ //        <div class="itemDescripShort itemFont">
+ //          Used in Cpr E 310 
+ //        </div>
+ //        <div class="itemSeller itemFont">
+ //          Austin Dorenkamp
+ //        </div>
+ //        <div class="itemPrice itemFont">
+ //          $90
+ //        </div>
+ //      </div>
+	// );
+
+	// $itemName.hover(
+	// 	function(e) {
+	// 		$('.itemNamePopup').show();
+	// 	},
+	// 	function(e) {
+	// 		$('itenNamePopup').hide();
+	// 	}
+	// );
 	// $itemName.mouseover(function() {
 	// 	alert('mouseover');
 	// 	$('.itemNamePopup').css({'display': 'block'});

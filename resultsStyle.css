@@ -11,18 +11,28 @@ form {
 	margin-left: 10px;
 	border: solid black 1px;
 	margin-right: 10px;
+	height: 60px;
+}
+
+.itemPhoto {
+	display: inline;
+	position: relative;
+	float: left;
 }
 
 .itemName {
 	display: inline;
-
+	position: relative;
+	float: left;
+	margin: 10px;
+	margin-top: 20px;
 }
 
-.itemNamePopup {
+/*.itemNamePopup {
 	display: none;
 	border: 1px solid black;
 	width: 150px;
-}
+}*/
 
 /*.itemName .itemNamePopup {
 	display: none;
@@ -34,19 +44,28 @@ form {
 
 .itemDescripShort {
 	display: inline;
-
+	position: relative;
+	float: left;
+	margin: 10px;
+	margin-top: 20px;
 }
 
 .itemSeller {
 	display: inline;
-
+	position: relative;
+	float: left;
+	margin: 10px;
+	margin-top: 20px;
 }
 
 .itemPrice {
 	display: inline;
-
+	position: relative;
+	float: left;
+	margin: 10px;
+	margin-top: 20px;
 }
 
 .itemFont {
-	font-size: small;
+	font-size: 16px;
 }
