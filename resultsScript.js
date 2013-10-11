@@ -1,14 +1,37 @@
 $(document).ready(function() {
 
-	var $item1Arr = {itemName: 'Discrete Mathematics and with Applications', 
+	var $item1Arr = {itemName: 'Discrete Mathematics with Applications', 
 		itemDescripShort: "Used for Cpr E 310", itemSeller: 'Austin Dorenkamp', 
 		itemPrice: 90};
+
+	$(function() {
+    	$( document ).tooltip();
+  	});
+
+  	$('.itemSeller').attr("title", 'Austin Dorenkamp tooltip');
 
 	$itemName = $('.itemName');
 	if($item1Arr['itemName'].length > 15) {
 		$itemName.html($item1Arr['itemName'].substring(0,15) + "...");
+		$itemName.attr('title',$item1Arr['itemName']);
 	} else {
 		$itemName.html($item1Arr['itemName']);
+	}
+
+	$itemDescripShort = $('.itemDescripShort');
+	if($item1Arr['itemDescripShort'].length > 15) {
+		$itemDescripShort.html($item1Arr['itemDescripShort'].substring(0,15) + "...");
+		$itemDescripShort.attr('title',$item1Arr['itemDescripShort']);
+	} else {
+		$itemDescripShort.html($item1Arr['itemName']);
+	}
+
+	$itemSeller = $('.itemSeller');
+	if($item1Arr['itemSeller'].length > 15) {
+		$itemSeller.html($item1Arr['itemSeller'].substring(0,15) + "...");
+		$itemSeller.attr('title',$item1Arr['itemSeller']);
+	} else {
+		$itemSeller.html($item1Arr['itemName']);
 	}
 
 	// $('.resultsPaneArr').append(
