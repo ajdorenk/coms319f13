@@ -9,12 +9,28 @@ form {
 
 .resultsPane {
 	margin-left: 10px;
+	border: solid black 1px;
+	margin-right: 10px;
 }
 
 .itemName {
 	display: inline;
 
 }
+
+.itemNamePopup {
+	display: none;
+	border: 1px solid black;
+	width: 150px;
+}
+
+/*.itemName .itemNamePopup {
+	display: none;
+}
+
+.itemName:hover .itemNamePopup {
+	display: block;
+}*/
 
 .itemDescripShort {
 	display: inline;
