@@ -151,34 +151,29 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 				</tr>
 			</table>
 	   </div> -->
-	   <br>
+		
+	  <br>
 		<script type="text/javascript">
 			$(".content").append(printBook("http://ecx.images-amazon.com/images/I/51yTnLG7i0L._SY300_.jpg", "Welcome", "Cameron Johnston", "5468265201", "Very Good", "$30.00"));
-		</script>
-	   <!--
-	   <div id="items" >
-			<table  id="tableitem">
-				<tr >
-					<td id="picturetd">
+		</script> 
+	   
+	   <!--<div id="items" >
+			<div id="centerdiv" >
 						<div id="picture">
 							<img id="pictureimg" src="http://ecx.images-amazon.com/images/I/518mhMH0IoL._SY300_.jpg">
-						</div>
-					</td>
-					<td>	
+						</div>	
 						<div id="info">
 						<p style="padding-left:1em; line-height:2.0em">
-							Item Informaton: edit<br>
-							Title:Title<br>
-							Author:<br>
-							ISBN:<br>
-							Item Condition:<br>
-							Asking Price:<br>
+							Item Informaton: <button id=" + id + " onClick='itemEdit(this.id)'>Edit</button><br>
+							Title:<span></span><br>
+							Author:<span></span><br>
+							ISBN:<span></span><br>
+							Item Condition:<span></span><br>
+							Asking Price:<span></span><br>
 						</p>
 						</div>
-					</td>
-				</tr>
-			</table>
-	   </div> -->
+			</div>
+	   </div>-->
   </div>
   <div class="footer">
     <p>This .footer contains the declaration position:relative; to give Internet Explorer 6 hasLayout for the .footer and cause it to clear correctly. If you're not required to support IE6, you may remove it.</p>

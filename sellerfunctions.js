@@ -2,16 +2,15 @@ var num = 1;
 function printBook(src, title, author, isbn, condition, asking)
 {
 	var id = "edititem" + num;
-	var toReturn = "<div id='items' ><table  id='tableitem'><tr ><td id='picturetd'><div id='picture'><img id='pictureimg' src=" +
-						src + ">" +
-						"</div></td><td><div id='info'><p style='padding-left:1em; line-height:2.0em'>" +
-						"Item Informaton: <button id=" + id + " onClick='itemEdit(this.id)'>Edit</button><br>" + 
-							"Title: <span id='span'" + id +">"+ title + "</span><br>" +
-							"Author: <span>" + author + "</span><br>" +
-							"ISBN: <span>" + isbn + "</span><br>" +
-							"Item Condition: <span>" + condition + "</span><br>" +
-							"Asking Price: <span>" + asking + "</span><br>" +
-						"</p></div></td></tr></table></div>";
+	var toReturn = "<div id='items'><div id='centerdiv' ><div id='picture'>" + 
+					"<img id='pictureimg' src=" + src + ">" +
+					"</div><div id='info" + id + "' class='info'><p style='padding-left:1em; line-height:2.0em'>" + 
+					"Item Informaton: <button id=" + id + " onClick='itemEdit(this.id)'>Edit</button><br>" + 
+					"Title:<span>" + title +"</span><br>" +
+					"Author:<span>" + author + "</span><br>" +
+					"ISBN:<span>" + isbn + "</span><br>" +
+					"Item Condition:<span>" + condition + "</span><br>" +
+					"Asking Price:<span>" + asking + "</span><br></p></div></div></div>";
 	num += 1;
 	return toReturn;
 	/*return "balls";*/
@@ -110,32 +109,30 @@ function editFunc()
 }
 
 function itemEdit(id)
-{
-	$('#tableitem td button').each( function()
+{	
+	var button = "#" + id;
+	var buttontext = $(button).text();
+	var name = "#info" + id + " span";
+	if(buttontext == "Edit")
 	{
-		var temp = 'edititem';
-		var tempId = $(this).attr('id');
-		for(var i = 1; i<num;i++)
-		{
-			if(tempId == (temp + i) && tempId == id)
-			{
-			alert(tempId);
-				var count = 1;
-				$('#tableitem td div').each( function()
-				{	
-					var a = $(this).attr('id');
-					if(count == i && a == 'info')
-					{
-						$(this).html("hmm");
-						var b = $(this).getElementById('span1');
-						alert(b);
-					}
-					if(a == 'info')
-						count += 1;
-				});
-			}
-		}
-	});
+		$(button).text("Save");
+		$(name).each(function () {
+			var temp = $(this).text();
+			$(this).html("<textarea id='textarea" + id + "' style='margin:0;resize:none;vertical-align:middle' rows=1 id='nametext'>" +temp+"</textarea>");
+		});
+	}
+	else if(buttontext == "Save")
+	{
+		//name = "#info" + id + " textarea";
+		$(button).text("Edit");
+		$(name).each(function () {
+			var toget = "#textarea" + id;
+			var temp = $(toget).val();
+			$(this).html(temp);
+		});
+	}
+	
+	
 }
 
 $(document).ready( function() {
