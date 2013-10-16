@@ -62,7 +62,6 @@
 		    $returnStr += '</div>';
 		    // alert($returnStr);
 		}
-		alert($returnStr);
 	    return $returnStr;
 
 	}		
