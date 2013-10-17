@@ -3,30 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Untitled Document</title>
-<link href="style.css" rel="stylesheet" type="text/css"><!--[if lte IE 7]>
-<style>
-.content { margin-right: -1px; } /* this 1px negative margin can be placed on any of the columns in this layout with the same corrective effect. */
-ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it needs to correct extra whiltespace between the links */
-</style>
-<![endif]-->
+<link href="style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 
-<script type="text/javascript">
-	function tabFunction(var type){
+<script type="text/JavaScript">
+	function tabFunction(type){
 		var tab;
 		if(type == "buyer")
 		{
-			tab =document.getElementById('seller_tab');
-			tab.style="display:none";
-			document.getElementById('buyer_tab').style="display:inline";
+			tab = document.getElementById("seller_tab");
+			tab.style.display = "none";
+			document.getElementById("buyer_tab").style.display="inline";
 		}
 		else if(type == "seller")
 		{
-			tab =document.getElementById('buyer_tab');
-			tab.style="display:none";
-			document.getElementById('seller_tab').style="display:inline";
+			tab =document.getElementById("buyer_tab");
+			tab.style.display = "none";
+			document.getElementById("seller_tab").style.display="inline";
 		}
 	};
 </script>
@@ -45,13 +40,14 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
     <p>If you would like the navigation along the top, simply move the ul.nav to the top of the page and recreate the styling.</p>
     <!-- end .sidebar1 --></div>
   <div class="content">
-		<button id="buyer" onclick="tabFunction(this.id)"> 
-		<button id="seller" onclick="tabFunction(this.id)">
+		<button id="buyer" onclick="tabFunction(this.id)">Quick Search</button>
+		<button id="seller" onclick="tabFunction(this.id)">Seller Login</button>
 		<div id="buyer_tab" border="solid">
-			Quick Search <br />
+			<h2>Quick Search</h2>
+			<br>
 			<form>
-			<input type="text">
-			<input type="submit" value="search">
+				<input type="text">
+				<input type="submit" value="search">
 			</form>
 		</div>
 		
