@@ -40,13 +40,13 @@ a:hover, a:active, a:focus { /* this group of selectors will give a keyboard nav
 	height:100%;
 	max-width: 1260px;/* a max-width may be desirable to keep this layout from getting too wide on a large monitor. This keeps line length more readable. IE6 does not respect this declaration. */
 	min-width: 780px;/* a min-width may be desirable to keep this layout from getting too narrow. This keeps line length more readable in the side columns. IE6 does not respect this declaration. */
-	background-color: #FFCC00;
+	background-color: #FF9900;
 	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout. It is not needed if you set the .container's width to 100%. */
 }
 
 /* ~~ the header is not given a width. It will extend the full width of your layout. It contains an image placeholder that should be replaced with your own linked logo ~~ */
 .header {
-	background-color: #FFCC00;
+	background-color: #FF9900;
 }
 
 /* ~~ These are the columns for the layout. ~~ 
@@ -64,7 +64,7 @@ a:hover, a:active, a:focus { /* this group of selectors will give a keyboard nav
 	float: left;
 	width: 20%;
 	height: 100%; 
-	background-color: #FFCC00;
+	background-color: #FF9900;
 	padding-bottom: 10px;
 }
 .content {
@@ -92,7 +92,7 @@ ul.nav a, ul.nav a:visited { /* grouping these selectors makes sure that your li
 	padding: 5px 5px 5px 15px;
 	display: block; /* this gives the link block properties causing it to fill the whole LI containing it. This causes the entire area to react to a mouse click. */
 	text-decoration: none;
-	background-color: #FFCC00;
+	background-color: #FF9900;
 	color: #000;
 }
 ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background and text color for both mouse and keyboard navigators */
@@ -103,7 +103,7 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background
 /* ~~ The footer ~~ */
 .footer {
 	padding: 10px 0;
-	background-color: #FFCC00;
+	background-color: #FF9900;
 	position: relative;/* this gives IE6 hasLayout to properly clear */
 	clear: both; /* this clear property forces the .container to understand where the columns end and contain them */
 }
