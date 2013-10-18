@@ -1,4 +1,3 @@
-<!doctype html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -33,8 +32,8 @@
   <div class="sidebar1">
     <ul class="nav">
       <li><a href="#">Home</a></li>
-      <li><a href="results.html">Search</a></li>
-      <li><a href="myacount.html">Seller Page</a></li>
+      <li><a href="results.php">Search</a></li>
+      <li><a href="myaccount.php">Seller Page</a></li>
       <li><a href="#">About Us</a></li>
     </ul>
     <!-- end .sidebar1 --></div>

@@ -1,4 +1,3 @@
-<!doctype html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -22,8 +21,8 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
     <!-- end .header --></div>
    <div class="sidebar1">
     <ul class="nav">
-      <li><a href="homepage.html">Home</a></li>
-      <li><a href="results.html">Search</a></li>
+      <li><a href="homepage.php">Home</a></li>
+      <li><a href="results.php">Search</a></li>
       <li><a href="#">Seller Page</a></li>
       <li><a href="#">About Us</a></li>
     </ul>
