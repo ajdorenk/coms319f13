@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Untitled Document</title>
-<link href="account_style.css" rel="stylesheet" type="text/css">
+<link href="createAccount_style.css" rel="stylesheet" type="text/css">
 <link href="style.css" rel="stylesheet" type="text/css"><!--[if lte IE 7]>
 <style>
 .content { margin-right: -1px; } /* this 1px negative margin can be placed on any of the columns in this layout with the same corrective effect. */
@@ -13,6 +13,18 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 </head>
 
 <body>
+
+<script type="text/JavaScript">
+	function emailValidator(email) {
+		var iaState = "@iastate.edu";
+		var exists = new RegExp(iaState+"$").test(email);
+		alert(exists);
+	};
+	
+	function validate() {
+		
+	};
+</script>
 
 <div class="container">
   <div class="header"><a href="#"><img src="" alt="Insert Logo Here" name="Insert_logo" width="20%" height="90" id="Insert_logo" style="background-color: #8090AB; display:block;" /></a> 
@@ -30,7 +42,38 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
   <div class="content">
 	<h2>Create An Account</h2>
 	<br>
-	<form class="myForm" style="text-align:center">
+	<table id="form_table" class="form">
+		<tr>
+			<td>*First Name: </td>
+			<td><input type="text" id="fname"></td>
+		</tr>
+		<tr>
+			<td> Last Name: </td>
+			<td><input type="text" id="lname"></td>
+		</tr>
+		<tr>
+			<td>*Email: </td>
+			<td><input type="text" id="email"></td>
+			<td id="email_error" style="visibility:hidden;">Must use Iowa State issued email!!</td>
+		</tr>
+		<tr>
+			<td>*Password: </td>
+			<td><input type="text" id="password"></td>
+		</tr>
+		<tr>
+			<td>*Confirm Password: </td>
+			<td><input type="text" id="confirm_password"></td>
+		</tr>
+		<tr>
+			<td> Phone #: </td>
+			<td><input type="text" id="number"></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="right"><input type="submit" value="Create" onclick="validate()"></td>
+		</tr>
+	</table>
+	<!--<form class="myForm" style="text-align:center">
 		*First Name: <input type="text" name="fname"><br>
 		<br>
 		Last Name: <input type="text" name="lname"><br>
@@ -42,7 +85,7 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 		Phone number: <input type="text" name="number"><br>
 		<br>
 		<input type="submit" value="Create" onclick="">
-	</form>
+	</form>-->
 	<p>* indicates a required field</p>
     <!-- end .content --></div>
   <div class="footer">
