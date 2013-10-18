@@ -1,9 +1,9 @@
 @charset "UTF-8";
-.form label {
-display: inline-block;
+.form {
 padding-left: 75px;
 }
 
+/* may not need*/
 .buttons {
 padding-left: 100px;
 }

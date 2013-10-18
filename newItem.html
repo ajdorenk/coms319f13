@@ -13,24 +13,6 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 
 <body>
 
-<script type="text/javascript">
-	function tabFunction(var type){
-		var tab;
-		if(type == "buyer")
-		{
-			tab =document.getElementById('seller_tab');
-			tab.style="display:none";
-			document.getElementById('buyer_tab').style="display:inline";
-		}
-		else if(type == "seller")
-		{
-			tab =document.getElementById('buyer_tab');
-			tab.style="display:none";
-			document.getElementById('seller_tab').style="display:inline";
-		}
-	};
-</script>
-
 <div class="container">
   <div class="header"><a href="#"><img src="" alt="Insert Logo Here" name="Insert_logo" width="20%" height="90" id="Insert_logo" style="background-color: #8090AB; display:block;" /></a> 
     <!-- end .header --></div>
@@ -45,35 +27,31 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
     <p>If you would like the navigation along the top, simply move the ul.nav to the top of the page and recreate the styling.</p>
     <!-- end .sidebar1 --></div>
   <div class="content">
-		<button id="buyer" onclick="tabFunction(this.id)"> 
-		<button id="seller" onclick="tabFunction(this.id)">
-		<div id="buyer_tab" border="solid">
-			Quick Search <br />
-			<form>
-			<input type="text">
-			<input type="submit" value="search">
-			</form>
-		</div>
-		
-		<div id="seller_tab" style="display: none">
-			<h2>Login</h2>
+	<h2>New Item:</h2>
+	<br>
+	<div id="leftHalf" style="float:left">
+		<form>
+			Name: <input type="text" name="fname"><br>
 			<br>
-			<div class="form">
-				<Label>Username: </Label>
-				<input id="username" type="text" width="250px">
-			</div>
-			<div class="form">
-				<Label>Password: </Label>
-				<input id="password" type="text" width="250px">
-				<a>Forgot password?</a>
-			</div>
+			Description: <input type="text" name="fdescr"><br>
 			<br>
-			<div class="buttons">
-				<button id="login" type="submit" onclick="">Go!</button>
-				<button id="new_user" type="submit" onclick="">Create an account</button>
-			</div>
-		</div>
-   <!-- end .content --></div>
+			Price: <input type="text" name="fprice"><br>
+			<br>
+			<input type="checkbox" name="fnegotiate">Allow negotiations?
+		</form>
+	</div>
+	<div id="rightHalf">
+		<img src="placeholder.jpg" height="125px" width="120px"> 
+		<label for="img_file">Image:</label>
+		<input type="text" id="img_file">
+		<button type="button">Browse Computer</button>
+	</div>
+	<br>
+	<br>
+	<button id="canel_item" type="button" style="float:right">Cancel</button>
+	<button id="submit_item" type="submit" style="float:right">Submit</button>
+	
+  <!-- end .content --></div>
   <div class="footer">
     <p>This .footer contains the declaration position:relative; to give Internet Explorer 6 hasLayout for the .footer and cause it to clear correctly. If you're not required to support IE6, you may remove it.</p>
     <!-- end .footer --></div>
