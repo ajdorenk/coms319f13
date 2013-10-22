@@ -1,0 +1,62 @@
+
+#items {
+	border:2px solid black;
+	width:85%;
+	height:15em;
+	margin:auto;
+	background-color:white;
+	border-radius:.5em;
+}
+
+#picture {
+	/*border:2px solid black;*/
+	width:25%;
+	height:12em;
+	position:relative;
+	float:left;
+	align:left;
+}
+
+.info {
+	border:2px solid black;
+	width:68%;
+	height:12em;
+	text-align:left;
+	border-radius:1.0em;
+	/*padding-left:2px;*/
+	position:relative;
+	float:left;
+	align:top;
+	margin-left:5%;
+}
+
+#tableitem {
+	/*border:2px solid black;*/
+	width:100%;
+	margin:auto;
+	height:15em;
+}
+
+#picturetd {
+	width:27%;
+}
+
+#pictureimg {
+	/*position:absolute;*/
+	margin-left:8%;
+	height:100%;
+}
+
+#userinfo {
+	/*width:50%;*/
+	height:100%;
+	border:2px solid black;
+	background-color:white;
+	border-radius:0.5em;
+}
+
+#centerdiv {
+	margin-left:5%;
+	margin-right:5%;
+	margin-top:3%;
+}
