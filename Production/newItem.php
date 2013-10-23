@@ -2,6 +2,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Untitled Document</title>
+<link href="newItem_style.css" rel="stylesheet" type="text/css">
 <link href="style.css" rel="stylesheet" type="text/css"><!--[if lte IE 7]>
 <style>
 .content { margin-right: -1px; } /* this 1px negative margin can be placed on any of the columns in this layout with the same corrective effect. */
@@ -11,7 +12,6 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 </head>
 
 <body>
-
 <div class="container">
   <div class="header"><a href="#"><img src="" alt="Insert Logo Here" name="Insert_logo" width="20%" height="90" id="Insert_logo" style="background-color: #8090AB; display:block;" /></a> 
     <!-- end .header --></div>
@@ -28,23 +28,33 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
   <div class="content">
 	<h2>New Item:</h2>
 	<br>
-	<div id="leftHalf" style="float:left">
-		<form>
-			Name: <input type="text" name="fname"><br>
-			<br>
-			Description: <input type="text" name="fdescr"><br>
-			<br>
-			Price: <input type="text" name="fprice"><br>
-			<br>
-			<input type="checkbox" name="fnegotiate">Allow negotiations?
-		</form>
-	</div>
-	<div id="rightHalf">
-		<img src="placeholder.jpg" height="125px" width="120px"> 
-		<label for="img_file">Image:</label>
-		<input type="text" id="img_file">
-		<button type="button">Browse Computer</button>
-	</div>
+	
+	<table id="form_table" class="form">
+		<tr class="spaceUnder">
+			<td>Name: </td>
+			<td><input type="text" id="name"></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td>Description: </td>
+			<td><input type="text" id="description"></td>
+		</tr>
+		<tr  class="spaceUnder">
+			<td>Price: </td>
+			<td><input type="text" id="price"></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td align="right"><input type="checkbox" id="negotiations"></td>
+			<td>Allow negotiations?</td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><label for="img_file">Image:</label></td>
+			<td><img src="placeholder.jpg" height="125px" width="120px"></td>
+			<td align="top">
+				<input type="text" id="img_file">
+				<button type="button">Browse Computer</button>
+			</td>
+		</tr>
+	</table>
 	<br>
 	<br>
 	<button id="canel_item" type="button" style="float:right">Cancel</button>

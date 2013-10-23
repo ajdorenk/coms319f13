@@ -1,1 +1,11 @@
 @charset "UTF-8";
+tr.spaceUnder > td
+{
+  padding-bottom: 1em;
+}
+
+.form 
+{
+	padding-left: 75px;
+	padding-right: 50px;
+}
