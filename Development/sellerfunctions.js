@@ -10,10 +10,34 @@ function printBook(src, title, author, isbn, condition, asking)
 					"Author:<span>" + author + "</span><br>" +
 					"ISBN:<span>" + isbn + "</span><br>" +
 					"Item Condition:<span>" + condition + "</span><br>" +
-					"Asking Price:<span>" + asking + "</span><br></p></div></div></div>";
+					"Asking Price:<span>" + asking + "</span><br></p></div></div></div><br>";
 	num += 1;
 	return toReturn;
 	/*return "balls";*/
+}
+
+function getBooks(email)
+{
+	var toRet = "";
+	$.ajax({
+		type: "POST",
+		url: "my_account_books.php",
+		data: {
+					Email : email
+				},
+		async: false
+		//dataType: "text",
+		/*success: printAllBooks(data),
+		error: function(error) {
+					alert("Sorry your request could not be processed");
+				}*/
+	}).done( function( data ) {
+		var books = $.parseJSON(data);
+		$.each(books,  function() {
+			toRet += printBook(this["ImageLink"], this["Title"], this["Author"], this["ISBN"], this["ItemShape"], this["Price"]);
+		});
+	});
+	return toRet;
 }
 
 function printInfo(name, email, phone, created, sale, sold, rating)
@@ -38,6 +62,37 @@ function printInfo(name, email, phone, created, sale, sold, rating)
 				"Number of Books for Sale: <br>Number of Books Sold:<br>Current Seller Rating:<br>" +
 				"View Rating:<br></p>--></div></td></tr></table></div>";
 	return toReturn;
+}
+
+function getUser(email)
+{
+	var toRet = "";
+	$.ajax({
+	type: "POST",
+	url: "my_account.php",
+	data: {
+				Email : email
+			},
+	async: false
+	//dataType: "json"
+	/*success: function( $data ){
+				var books = parseJSON(arr);
+				$each(books, function(value) {
+				name = "" + value["FName"] + value["LName"];
+					printBook(name, value["Email"], value["Phone"], value["DCreated"], 3, 0, 5);
+				});
+	},
+	error: function(error) {
+				alert("Sorry your request could not be processed");
+			}*/
+	}).done( function( data ) {
+			
+		var user = $.parseJSON(data);
+				$.each(user,  function() {
+					toRet = printInfo("" + this["FName"] + this["LName"], this["Email"], this["Phone"], this["DCreated"], 3, 0, 5);
+				});
+	});
+	return toRet;
 }
 
 var edit = 0;

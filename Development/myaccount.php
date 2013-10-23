@@ -1,4 +1,3 @@
-<!doctype html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -22,8 +21,8 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
     <!-- end .header --></div>
    <div class="sidebar1">
     <ul class="nav">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Search</a></li>
+      <li><a href="index.php">Home</a></li>
+      <li><a href="results.php">Search</a></li>
       <li><a href="#">Seller Page</a></li>
       <li><a href="#">About Us</a></li>
     </ul>
@@ -36,7 +35,9 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 	<h1>My Account</h1>
   
 	<script type="text/javascript">
-		$(".content").append(printInfo("Passini, Bryan", "bpassini@iastate.edu", "(312)810-1031", "10/9/2013", "5", "10", "4.5"));
+		<!--$(".content").append(printInfo("Passini, Bryan", "bpassini@iastate.edu", "(312)810-1031", "10/9/2013", "5", "10", "4.5"));-->
+		//alert(getUser("bpassini@iastate.edu"));
+		$(".content").append(getUser("bpassini@iastate.edu"));
 	</script>
 	<!--
 	   <div style="width:86%; height:15em; margin:auto" >
@@ -125,7 +126,8 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 		
 		<br>
 		<script type="text/javascript">
-			$(".content").append(printBook("http://ecx.images-amazon.com/images/I/518mhMH0IoL._SY300_.jpg", "Hello", "Bryan Passini", "98656216516", "Like New", "$40.00"));
+			<!--$(".content").append(printBook("http://ecx.images-amazon.com/images/I/518mhMH0IoL._SY300_.jpg", "Hello", "Bryan Passini", "98656216516", "Like New", "$40.00")); -->
+			$(".content").append(getBooks("bpassini@iastate.edu"));
 		</script>
   <!--
 	   <div id="items" >
@@ -150,12 +152,12 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 					</td>
 				</tr>
 			</table>
-	   </div> -->
+	   </div> 
 		
 	  <br>
 		<script type="text/javascript">
 			$(".content").append(printBook("http://ecx.images-amazon.com/images/I/51yTnLG7i0L._SY300_.jpg", "Welcome", "Cameron Johnston", "5468265201", "Very Good", "$30.00"));
-		</script> 
+		</script> -->
 	   
 	   <!--<div id="items" >
 			<div id="centerdiv" >
@@ -176,7 +178,6 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 	   </div>-->
   </div>
   <div class="footer">
-    <p>This .footer contains the declaration position:relative; to give Internet Explorer 6 hasLayout for the .footer and cause it to clear correctly. If you're not required to support IE6, you may remove it.</p>
     <!-- end .footer --></div>
   <!-- end .container --></div>
 </body>
