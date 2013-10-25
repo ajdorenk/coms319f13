@@ -3,6 +3,8 @@
 <meta charset="UTF-8">
 <title>Create Account</title>
 <link href="createAccount_style.css" rel="stylesheet" type="text/css">
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <link href="style.css" rel="stylesheet" type="text/css"><!--[if lte IE 7]>
 <style>
 .content { margin-right: -1px; } /* this 1px negative margin can be placed on any of the columns in this layout with the same corrective effect. */
@@ -51,7 +53,7 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 				error: function(error) {
 							alert("Sorry your request could not be processed");
 						}*/
-			})//.done( function( data ) {
+			});//.done( function( data ) {
 				//var books = $.parseJSON(data);
 				//$.each(books,  function() {
 				//	toRet += printBook(this["ImageLink"], this["Title"], this["Author"], this["ISBN"], this["ItemShape"], this["Price"]);
