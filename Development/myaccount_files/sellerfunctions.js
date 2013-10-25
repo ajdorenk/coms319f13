@@ -1,4 +1,5 @@
-var num = 1;
+var num = 0;
+var arrIds = new Array();
 function printBook(src, title, author, isbn, condition, asking)
 {
 	var id = "edititem" + num;
@@ -19,6 +20,7 @@ function printBook(src, title, author, isbn, condition, asking)
 function getBooks(email)
 {
 	var toRet = "";
+	var i = 0;
 	$.ajax({
 		type: "POST",
 		url: "myaccount_files/php_scripts/my_account_books.php",
@@ -34,6 +36,7 @@ function getBooks(email)
 	}).done( function( data ) {
 		var books = $.parseJSON(data);
 		$.each(books,  function() {
+			arrIds[i++] = this["ID"];
 			toRet += printBook(this["ImageLink"], this["Title"], this["Author"], this["ISBN"], this["ItemShape"], this["Price"]);
 		});
 	});
@@ -87,7 +90,6 @@ function getRating(email)
 				});
 	});
 	var total =  f + p + a + t;
-	alert(total);
 	return (total / 4);
 }
 
@@ -131,6 +133,8 @@ function editFunc()
 			}
 		}
 	});
+	
+	var info = new Array();
 	
 	$('#usertable td').each( function() {
 		var ID = $(this).attr('id');
@@ -179,9 +183,34 @@ function editFunc()
 	});
 }
 
+function updateBook(title, author, isbn, condition, price, id)
+{
+	$.ajax({
+	type: "POST",
+	url: "myaccount_files/php_scripts/my_account_updatebook.php",
+	data: {
+				Title : title,
+				Author : author,
+				ISBN : isbn,
+				Condition : condition,
+				Price : price,
+				ID : id
+			},
+	async: false
+	});/*.done( function( data ) {
+		var user = $.parseJSON(data);
+				$.each(user,  function() {
+					toRet = printInfo("" + this["FName"] + this["LName"], this["Email"], this["Phone"], this["DCreated"], this["BooksForSale"], this["BooksSold"], rating);
+				});
+	});*/
+}
+
 function itemEdit(id)
 {	
 	var button = "#" + id;
+	var re = new RegExp("[0-9]");
+	var num = id.search(re);
+	var numID = parseInt(id.substring(num,id.length));
 	var buttontext = $(button).text();
 	var name = "#info" + id + " span";
 	if(buttontext == "Edit")
@@ -195,12 +224,16 @@ function itemEdit(id)
 	else if(buttontext == "Save")
 	{
 		//name = "#info" + id + " textarea";
+		var info = new Array();
+		var count = 0;
 		$(button).text("Edit");
 		$(name).each(function () {
 			var toget = "#textarea" + id;
 			var temp = $(toget).val();
+			info[count++] = temp;
 			$(this).html(temp);
 		});
+		updateBook(info[0], info[1], info[2], info[3], parseInt(info[4]), arrIds[numID]);
 	}
 	
 	
