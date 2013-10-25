@@ -41,11 +41,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $text = $_POST['searchText'];
     // $SQL = "SELECT * FROM login WHERE L1 = $uname AND L2 = md5($pword)";
     if($_POST['searchType'] == "itemName") {
-      $SQL = "SELECT * FROM Item i, Book b WHERE i.ID = b.BookID AND b.Title LIKE '%{$text}%'";
+      $SQL = "SELECT * FROM Item i, Book b WHERE i.ID = b.BookID AND b.Title LIKE '%{$text}%' AND i.Sold = false";
     } else if($_POST['searchType'] == "isbn") {
-      $SQL = "SELECT * FROM Item i, Book b WHERE i.ID = b.BookID AND b.ISBN LIKE '%{$text}%'";
+      $SQL = "SELECT * FROM Item i, Book b WHERE i.ID = b.BookID AND b.ISBN LIKE '%{$text}%' AND i.Sold = false";
     } else {
-      $SQL = "SELECT * FROM Item i, Book b WHERE i.ID = b.BookID";
+      $SQL = "SELECT * FROM Item i, Book b WHERE i.ID = b.BookID AND i.Sold = false";
     }
     $result = mysql_query($SQL);
 
