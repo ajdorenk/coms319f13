@@ -1,5 +1,4 @@
 <script>  var $itemAllArr = new Array(); </script>
-<script> alert("Test commit"); </script>
 <?php
   //==========================================
 //  ESCAPE DANGEROUS SQL CHARACTERS
