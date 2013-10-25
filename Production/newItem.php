@@ -12,6 +12,24 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 </head>
 
 <body>
+
+<script type = "text/JavaScript">
+	function onSelectType() {
+		var selector = document.getElementById("item_type");
+		var type = selector.value;
+		if(type == "book")
+		{
+			document.getElementById("book_table").style.display = "inline";
+			document.getElementById("other_table").style.display = "none";
+		}
+		else if(type == "other")
+		{
+			document.getElementById("other_table").style.display = "inline";
+			document.getElementById("book_table").style.display = "none";
+		}
+	};
+</script>
+
 <div class="container">
   <div class="header"><a href="#"><img src="" alt="Insert Logo Here" name="Insert_logo" width="20%" height="90" id="Insert_logo" style="background-color: #8090AB; display:block;" /></a> 
     <!-- end .header --></div>
@@ -27,9 +45,64 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
     <!-- end .sidebar1 --></div>
   <div class="content">
 	<h2>New Item:</h2>
+	<form>
+		What are you posting?: 
+		<select id="item_type" onchange="onSelectType()">
+			<option value=null></option>
+			<option value="book">Book</option>
+			<option value="other">Other</option>
+		</select>
+	</form>
 	<br>
 	
-	<table id="form_table" class="form">
+	<table id="book_table" class="form" style="display: none">
+		<tr class="spaceUnder">
+			<td>Title: </td>
+			<td><input type="text" id="title"></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td>Author: </td>
+			<td><input type="text" id="author"></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td>ISBN: </td>
+			<td><input type="text" id="isbn"></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td>Description: </td>
+			<td><input type="text" id="description"></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td>Condition:</td>
+			<td>
+				<select id="condition">
+					<option value=null></option>
+					<option value="poor">Poor</option>
+					<option value="acceptable">Acceptable</option>
+					<option value="newish">Like New</option>
+					<option value="new">New</option>
+				</select>
+			</td>
+		</tr>
+		<tr  class="spaceUnder">
+			<td>Price: </td>
+			<td><input type="text" id="price"></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td align="right"><input type="checkbox" id="negotiations"></td>
+			<td>Allow negotiations?</td>
+		</tr>
+		<tr class="spaceUnder">
+			<td><label for="img_file">Image:</label></td>
+			<td><img src="placeholder.jpg" height="125px" width="120px"></td>
+			<td align="top">
+				<input type="text" id="img_file">
+				<button type="button">Browse Computer</button>
+			</td>
+		</tr>
+	</table>
+	
+	<table id="other_table" class="form" style="display: none">
 		<tr class="spaceUnder">
 			<td>Name: </td>
 			<td><input type="text" id="name"></td>
@@ -37,6 +110,18 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 		<tr class="spaceUnder">
 			<td>Description: </td>
 			<td><input type="text" id="description"></td>
+		</tr>
+		<tr class="spaceUnder">
+			<td>Condition:</td>
+			<td>
+				<select id="condition">
+					<option value=null></option>
+					<option value="poor">Poor</option>
+					<option value="acceptable">Acceptable</option>
+					<option value="newish">Like New</option>
+					<option value="new">New</option>
+				</select>
+			</td>
 		</tr>
 		<tr  class="spaceUnder">
 			<td>Price: </td>
