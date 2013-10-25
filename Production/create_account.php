@@ -14,15 +14,132 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 <body>
 
 <script type="text/JavaScript">
+	function submit()	{
+		var fname = document.getElementById("fname").value;
+		var lname = document.getElementById("lname").value;
+		var email = document.getElementById("email").value;
+		var phone = document.getElementById("number").value;
+		var password = document.getElementById("password").value;
+		var confirm = document.getElementById("confirm_password").value;
+		var form = true;
+		var email_check = true;
+		var password_check = true;
+		
+		form = validate();
+		if(form){
+			email_check = emailValidator(email);
+			password_check = passwordValidator(password, confirm);
+		}
+		
+		if(form && email_check && password_check)
+		{
+			 clearErrors();
+			 //call php
+			 $.ajax({
+				type: "POST",
+				url: "insertNewUser.php",
+				data: {
+							fName : fname,
+							lName : lname,
+							email : email,
+							phone : phone,
+							password : password
+						},
+				async: false
+				//dataType: "text",
+				/*success: printAllBooks(data),
+				error: function(error) {
+							alert("Sorry your request could not be processed");
+						}*/
+			})//.done( function( data ) {
+				//var books = $.parseJSON(data);
+				//$.each(books,  function() {
+				//	toRet += printBook(this["ImageLink"], this["Title"], this["Author"], this["ISBN"], this["ItemShape"], this["Price"]);
+				//});
+			//});
+			 alert("Account created!");
+			 //then go to home page.
+		}
+		else
+		{
+			if(!form){
+				alert("Please fix the highlighted errors!");
+			}
+			if(!email_check) {
+				alert("Email must be under the IASTATE domain.");
+			}
+			if(!password_check){
+				alert("Make sure that your confirmation password matches your original password. \n Passwords Must be at least 6 characters long and contain 1 of each of the following: \n 1) Number \n 2) Upper-case letter \n 3) Lower-case letter");
+			}
+		}
+	};
+	
+	function passwordValidator(password, confirm) {
+		var good_password = true;
+		var match = true;
+		
+		
+		if(password == confirm) {
+		  if(password.length < 6) {
+			good_password = false;
+		  }
+		  re = /[0-9]/;
+		  if(!re.test(password)) {
+			good_password = false;
+		  }
+		  re = /[a-z]/;
+		  if(!re.test(password)) {
+			good_password = false;
+		  }
+		  re = /[A-Z]/;
+		  if(!re.test(password)) {
+			good_password = false;
+		  }
+		} 
+		else {
+		  match = false;
+		}
+		return good_password && match;
+	}
+	
 	function emailValidator(email) {
 		var iaState = "@iastate.edu";
 		var exists = new RegExp(iaState+"$").test(email);
-		alert(exists);
+		return exists;
 	};
 	
 	function validate() {
+		var fname = document.getElementById("fname");
+		var email = document.getElementById("email");
+		var password = document.getElementById("password");
+		var confirm = document.getElementById("confirm_password");
+		var form_complete = true;
+		if(fname.value == null || fname.value == ""){
+			form_complete = false;
+			document.getElementById("l_fname").style.color = "red";
+		}
+		if(email.value == null || email.value == ""){
+			form_complete = false;
+			document.getElementById("l_email").style.color = "red";
+		}
+		if(password.value == null || password.value == ""){
+			form_complete = false;
+			document.getElementById("l_password").style.color = "red";
+		}
+		if(confirm.value == null || confirm.value == ""){
+			form_complete = false;
+			document.getElementById("l_confirm").style.color = "red";
+		}
 		
+		return form_complete;
 	};
+	
+	function clearErrors(){
+		var fname = document.getElementById("l_fname").style.color = "black";
+		var email = document.getElementById("l_email").style.color = "black";
+		var password = document.getElementById("l_password").style.color = "black";
+		var confirm = document.getElementById("l_confirm").style.color = "black";
+	}
 </script>
 
 <div class="container">
@@ -41,33 +158,33 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 	<br>
 	<table id="form_table" class="form">
 		<tr class="spaceUnder">
-			<td>*First Name: </td>
+			<td><label id="l_fname">*First Name: </label></td>
 			<td><input type="text" id="fname"></td>
 		</tr>
 		<tr class="spaceUnder">
-			<td> Last Name: </td>
+			<td><label id="l_lname"> Last Name: </label></td>
 			<td><input type="text" id="lname"></td>
 		</tr>
 		<tr class="spaceUnder">
-			<td>*Email: </td>
+			<td><label id="l_email">*Email: </label></td>
 			<td><input type="text" id="email"></td>
 			<td id="email_error" style="visibility:hidden;">Must use Iowa State issued email!!</td>
 		</tr>
 		<tr class="spaceUnder">
-			<td>*Password: </td>
+			<td><label id="l_password">*Password: </label></td>
 			<td><input type="text" id="password"></td>
 		</tr>
 		<tr class="spaceUnder">
-			<td>*Confirm Password: </td>
+			<td><label id="l_confirm">*Confirm Password: </label></td>
 			<td><input type="text" id="confirm_password"></td>
 		</tr>
 		<tr class="spaceUnder">
-			<td> Phone #: </td>
+			<td><label id="l_phone"> Phone #: </label></td>
 			<td><input type="text" id="number"></td>
 		</tr>
 		<tr class="spaceUnder">
 			<td></td>
-			<td align="right"><input type="submit" value="Create" onclick="validate()"></td>
+			<td align="right"><input type="submit" value="Create" onclick="submit()"></td>
 		</tr>
 	</table>
 	<!--<form class="myForm" style="text-align:center">
