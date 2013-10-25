@@ -21,7 +21,7 @@ function getBooks(email)
 	var toRet = "";
 	$.ajax({
 		type: "POST",
-		url: "my_account_books.php",
+		url: "myaccount_files/php_scripts/my_account_books.php",
 		data: {
 					Email : email
 				},
@@ -64,32 +64,48 @@ function printInfo(name, email, phone, created, sale, sold, rating)
 	return toReturn;
 }
 
-function getUser(email)
+function getRating(email)
 {
-	var toRet = "";
+	var f;
+	var p;
+	var a;
+	var t;
 	$.ajax({
 	type: "POST",
-	url: "my_account.php",
+	url: "myaccount_files/php_scripts/my_account_ratings.php",
 	data: {
 				Email : email
 			},
 	async: false
-	//dataType: "json"
-	/*success: function( $data ){
-				var books = parseJSON(arr);
-				$each(books, function(value) {
-				name = "" + value["FName"] + value["LName"];
-					printBook(name, value["Email"], value["Phone"], value["DCreated"], 3, 0, 5);
-				});
-	},
-	error: function(error) {
-				alert("Sorry your request could not be processed");
-			}*/
-	}).done( function( data ) {
-			
+	}).done( function( data ) {	
 		var user = $.parseJSON(data);
 				$.each(user,  function() {
-					toRet = printInfo("" + this["FName"] + this["LName"], this["Email"], this["Phone"], this["DCreated"], 3, 0, 5);
+					f = parseInt(this["Friendly"]);
+					p = parseInt(this["Price"]);
+					a = parseInt(this["Availability"]);
+					t = parseInt(this["Time"]);
+				});
+	});
+	var total =  f + p + a + t;
+	alert(total);
+	return (total / 4);
+}
+
+function getUser(email)
+{
+	var rating = getRating(email);
+	var toRet = "";
+	$.ajax({
+	type: "POST",
+	url: "myaccount_files/php_scripts/my_account.php",
+	data: {
+				Email : email
+			},
+	async: false
+	}).done( function( data ) {
+		var user = $.parseJSON(data);
+				$.each(user,  function() {
+					toRet = printInfo("" + this["FName"] + this["LName"], this["Email"], this["Phone"], this["DCreated"], this["BooksForSale"], this["BooksSold"], rating);
 				});
 	});
 	return toRet;
