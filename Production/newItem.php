@@ -31,17 +31,9 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 		}
 	};
 	
-	function insertImage() {
-		//var temp = "C:\Users\Erich\Pictures\windowslogo.jpg";
-		 $.ajax({
-				type: "POST",
-				url: "insertPhoto.php",
-				//data: {
-					//		image: temp
-						//},
-				async: false
-			});
-	};
+	function submitForm() {
+		
+	}
 </script>
 
 <div class="container">
@@ -157,7 +149,7 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 	<br>
 	<br>
 	<button id="canel_item" type="button" style="float:right">Cancel</button>
-	<button id="submit_item" type="submit" style="float:right" onclick="insertImage()">Submit</button>
+	<button id="submit_item" type="submit" style="float:right" onclick="submitForm()">Submit</button>
 	
   <!-- end .content --></div>
   <div class="footer">
