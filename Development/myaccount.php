@@ -6,7 +6,11 @@
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="sellerfunctions.js"></script>
-<link href="myaccount.css" rel="stylesheet" type="text/css"><!--[if lte IE 7]>
+<script src="../bootstrap/bootstrap.min.js"></script>
+<script src="../bootstrap/carousel.js"></script>
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/carousel.css">
+<!-- <link href="myaccount.css" rel="stylesheet" type="text/css"><!--[if lte IE 7]>
 <style>
 .content { margin-right: -1px; } /* this 1px negative margin can be placed on any of the columns in this layout with the same corrective effect. */
 ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it needs to correct extra whiltespace between the links */
@@ -16,9 +20,48 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 
 <body>
 
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">Brand</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About Us</a></li>
+	  <li><a href="#">Contact Us</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#">Log In</a></li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+
+<div class="row">
+	<div class="col-md-2">
+		<div class="well sidebar-nav">
+			<ul class="nav nav-list">
+			  <li class="nav-header">Navigation</li>
+			  <li class="active"><a href="#">Home</a></li>
+			  <li><a href="#">Search For Books</a></li>
+			  <li><a href="#">List My Books</a></li>
+			  <li><a href="#"></a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-10">
+<!--
 <div class="container">
   <div class="header"><a href="#"><img src="" alt="Insert Logo Here" name="Insert_logo" width="20%" height="90" id="Insert_logo" style="display:block;" /></a> 
-    <!-- end .header --></div>
+    <!-- end .header </div>
    <div class="sidebar1">
     <ul class="nav">
       <li><a href="index.php">Home</a></li>
@@ -32,7 +75,7 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 	
 	
   <div class="content">
-	<h1>My Account</h1>
+	<h1>My Account</h1> -->
   
 	<script type="text/javascript">
 		<!--$(".content").append(printInfo("Passini, Bryan", "bpassini@iastate.edu", "(312)810-1031", "10/9/2013", "5", "10", "4.5"));-->
@@ -176,6 +219,8 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 						</div>
 			</div>
 	   </div>-->
+	   </div>
+	</div>
   </div>
   <div class="footer">
     <!-- end .footer --></div>

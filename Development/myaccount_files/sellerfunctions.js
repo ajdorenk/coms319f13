@@ -45,7 +45,7 @@ function getBooks(email)
 
 function printInfo(name, email, phone, created, sale, sold, rating)
 {	
-	var toReturn = "<div style='width:86%; height:15em; margin:auto' ><table style='width:100%; height:100%'>" +
+	var toReturn = "<div  style='width:86%; height:15em; margin:auto' ><table style='width:100%; height:100%'>" +
 				"<tr style='width:100%; height:100%'><td style='width:50%; height:100%'><div id='userinfo'>" +
 				"<table id='usertable' border='1px' style='width:100%; height:100%'><thead><tr><th colspan='2'>User Information <button id='edituser'>Edit</button></th></tr>" +
 				"</thead><tbody><tr><td>Name</td><td id='nameuser'>" + name + "</td></tr><tr>" +
