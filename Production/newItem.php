@@ -2,6 +2,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Untitled Document</title>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <link href="newItem_style.css" rel="stylesheet" type="text/css">
 <link href="style.css" rel="stylesheet" type="text/css"><!--[if lte IE 7]>
 <style>
@@ -27,6 +29,18 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 			document.getElementById("other_table").style.display = "inline";
 			document.getElementById("book_table").style.display = "none";
 		}
+	};
+	
+	function insertImage() {
+		//var temp = "C:\Users\Erich\Pictures\windowslogo.jpg";
+		 $.ajax({
+				type: "POST",
+				url: "insertPhoto.php",
+				//data: {
+					//		image: temp
+						//},
+				async: false
+			});
 	};
 </script>
 
@@ -143,7 +157,7 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 	<br>
 	<br>
 	<button id="canel_item" type="button" style="float:right">Cancel</button>
-	<button id="submit_item" type="submit" style="float:right">Submit</button>
+	<button id="submit_item" type="submit" style="float:right" onclick="insertImage()">Submit</button>
 	
   <!-- end .content --></div>
   <div class="footer">
