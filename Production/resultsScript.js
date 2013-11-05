@@ -22,6 +22,22 @@
 	$itemAllArr[7] = {itemName: 'Discrete Mathematics with Applications', 
 		itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
 
+	function resultsTableGenerator() {
+      // var $returnStr = "":
+      var $returnStr = "<table class='table table-striped'>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Item Name</th>
+            <th>Description</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+      </table>";
+
+      return $returnStr;
+    }
+
   	function resultsPaneGenerator() {
 
   		var $returnStr = "";

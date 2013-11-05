@@ -1,3 +1,4 @@
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script>  var $itemAllArr = new Array(); </script>
 <?php
   //==========================================
@@ -109,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     // }
 
-  mysql_close($dbhandle);
+    mysql_close($dbhandle);
 
   }
 
@@ -121,24 +122,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 }
 ?>
-<script>
+ <script>
 
-  // $itemAllArr[0] = {itemName: 'Discrete Mathematics with Applications', 
-  //   itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
-  // $itemAllArr[1] = {itemName: 'Discrete Mathematics with Applications', 
-  //   itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
-  // $itemAllArr[2] = {itemName: 'Discrete Mathematics with Applications', 
-  //   itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
-  // $itemAllArr[3] = {itemName: 'Discrete Mathematics with Applications', 
-  //   itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
-  // $itemAllArr[4] = {itemName: 'Discrete Mathematics with Applications', 
-  //   itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
-  // $itemAllArr[5] = {itemName: 'Discrete Mathematics with Applications', 
-  //   itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
-  // $itemAllArr[6] = {itemName: 'Discrete Mathematics with Applications', 
-  //   itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
-  // $itemAllArr[7] = {itemName: 'Discrete Mathematics with Applications', 
-  //   itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
+//   // $itemAllArr[0] = {itemName: 'Discrete Mathematics with Applications', 
+//   //   itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
+//   // $itemAllArr[1] = {itemName: 'Discrete Mathematics with Applications', 
+//   //   itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
+//   // $itemAllArr[2] = {itemName: 'Discrete Mathematics with Applications', 
+//   //   itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
+//   // $itemAllArr[3] = {itemName: 'Discrete Mathematics with Applications', 
+//   //   itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
+//   // $itemAllArr[4] = {itemName: 'Discrete Mathematics with Applications', 
+//   //   itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
+//   // $itemAllArr[5] = {itemName: 'Discrete Mathematics with Applications', 
+//   //   itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
+//   // $itemAllArr[6] = {itemName: 'Discrete Mathematics with Applications', 
+//   //   itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
+//   // $itemAllArr[7] = {itemName: 'Discrete Mathematics with Applications', 
+//   //   itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
+
+    function resultsTableGenerator() {
+      var $returnStr = "";
+      var $content = "";
+      var $ttTitle = '';
+      for(var $i = 0; $i<$itemAllArr.length; $i++) {
+        
+      if($itemAllArr[$i]['itemName'].length > 25) {
+        $content = ($itemAllArr[$i]['itemName'].substring(0,25) + "...");
+        $ttTitle = ($itemAllArr[$i]['itemName']);
+      } else {
+        $content = ($itemAllArr[$i]['itemName']);
+        $ttTitle = '';
+      }
+
+      $returnStr += "<table class='table table-striped'>";
+      $returnStr += "<thead><tr><th>#</th><th>Item Name</th><th>Description</th>";
+      $returnStr += "<th>Price</th></tr></thead>";
+
+      $retunrStr += "</table>";
+
+      return $returnStr;
+    }
 
     function resultsPaneGenerator() {
 
@@ -180,17 +204,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $returnStr += '</div>';
         // alert($returnStr);
     }
+
       return $returnStr;
 
-  } 
-</script>
+    } 
+ </script>  
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Search Results</title>
 <link href="resultsStyle.css" rel="stylesheet" type="test/css">
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<link href="style.css" rel="stylesheet" type="text/css"><!--[if lte IE 7]>
+<script src="../bootstrap/bootstrap.min.js"></script>
+<script src="../bootstrap/carousel.js"></script>
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/carousel.css">
+<!-- <link href="style.css" rel="stylesheet" type="text/css"> --><!--[if lte IE 7]>
 <style>
 .content { margin-right: -1px; } /* this 1px negative margin can be placed on any of the columns in this layout with the same corrective effect. */
 ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it needs to correct extra whiltespace between the links */
@@ -198,13 +227,74 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 <![endif]-->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <!-- <script language="JavaScript" type="text/javascript" src="resultsScript.js"></script> -->
+<style type="text/css">
+      body {
+    padding-top: 70px;
+        padding-bottom: 40px;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    .container {
+    max-width : 100%;
+    }
+    
+    .jumbotron {
+    background-color: "blue";
+    }
+</style>
 </head>
 
 <body>
 
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">Brand</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About Us</a></li>
+    <li><a href="#">Contact Us</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#">Log In</a></li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+
 <div class="container">
-  <div class="header"><a href="#"><img src="" alt="Insert Logo Here" name="Insert_logo" width="20%" height="90" id="Insert_logo" style="background-color: #8090AB; display:block;" /></a> 
-    <!-- end .header --></div>
+
+  <div class="row">
+  <div class="col-md-2">
+    <div class="well sidebar-nav">
+      <ul class="nav nav-list">
+        <li class="nav-header">Navigation</li>
+        <li class="active"><a href="#">Buy</a></li>
+        <li><a href="#">Sell</a></li>
+        <li><a href="#"></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-10">
+
+ <!--  <div class="header"><a href="#"><img src="" alt="Insert Logo Here" name="Insert_logo" width="20%" height="90" id="Insert_logo" style="background-color: #8090AB; display:block;" /></a> 
+    </div>
   <div class="sidebar1">
     <ul class="nav">
       <li><a href="index.php">Home</a></li>
@@ -213,7 +303,7 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
       <li><a href="#">About Us</a></li>
     </ul>
     <p> </p>
-    <!-- end .sidebar1 --></div>
+    end .sidebar1</div> -->
   <div class="content">
     <div class="advSearch">
       Search by:
@@ -233,8 +323,19 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
       </form>
     </div>
     <div class="resultsPaneArr" style="overflow:scroll; height:400px;">
+<!--     <table class='table table-striped'>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Item Name</th>
+            <th>Description</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+      </table> -->
       <script type='text/javascript'>
-        $('.resultsPaneArr').append(resultsPaneGenerator());
+        // $('.resultsPaneArr').append(resultsPaneGenerator());
+        $('.resultsPaneArr').append(resultsTableGenerator());
       </script>
 <!--       <div class="resultsPane itemFont">
         <div class="itemPhoto">
@@ -250,8 +351,6 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 
     </div>
     <!-- end .content --></div>
-  <div class="footer">
-    <!-- end .footer --></div>
   <!-- end .container --></div>
 </body>
 </html>
