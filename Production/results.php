@@ -69,7 +69,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
       // itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
       echo "<script>";
       echo "\$itemAllArr[".$counter."] = {itemName: '".$row['Title']."',";
-      echo "itemDescripShort: '".$row['Description']."', itemPrice: ".$row['Price']."};";
+      echo "itemDescripShort: '".$row['Description']."', itemPrice: ".$row['Price'].",";
+      echo "imageLink: '".$row['ImageLink']."'};";
       echo "</script>";
       $counter++;
     }
@@ -144,22 +145,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     function resultsTableGenerator() {
       var $returnStr = "";
       var $content = "";
-      var $ttTitle = '';
-      for(var $i = 0; $i<$itemAllArr.length; $i++) {
-        
-      if($itemAllArr[$i]['itemName'].length > 25) {
-        $content = ($itemAllArr[$i]['itemName'].substring(0,25) + "...");
-        $ttTitle = ($itemAllArr[$i]['itemName']);
-      } else {
-        $content = ($itemAllArr[$i]['itemName']);
-        $ttTitle = '';
-      }
+      var $ttTitle = "";
 
       $returnStr += "<table class='table table-striped'>";
       $returnStr += "<thead><tr><th>#</th><th>Item Name</th><th>Description</th>";
       $returnStr += "<th>Price</th></tr></thead>";
 
-      $retunrStr += "</table>";
+      for(var $i = 0; $i<$itemAllArr.length; $i++) {
+        
+        // if($itemAllArr[$i]['itemName'].length > 25) {
+        //   $content = ($itemAllArr[$i]['itemName'].substring(0,25) + "...");
+        //   $ttTitle = ($itemAllArr[$i]['itemName']);
+        // } else {
+        //   $content = ($itemAllArr[$i]['itemName']);
+        //   $ttTitle = ($itemAllArr[$i]['itemName']);
+        // }
+
+        $returnStr += "<tr><td><img src='" + $itemAllArr[$i]['imageLink'] + "' alt='No Image Available'</td>";
+        $returnStr += "<td>" + $itemAllArr[$i]['itemName'] + "</td>";
+        $returnStr += "<td>" + $itemAllArr[$i]['itemDescripShort'] + "</td>";
+        $returnStr += "<td>$" + $itemAllArr[$i]['itemPrice'] + "</td>";
+        $returnStr += "</tr>";
+
+      }
+
+
+
+      $returnStr += "</table>";
 
       return $returnStr;
     }
