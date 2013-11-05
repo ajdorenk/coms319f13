@@ -48,17 +48,7 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 							password : password
 						},
 				async: false
-				//dataType: "text",
-				/*success: printAllBooks(data),
-				error: function(error) {
-							alert("Sorry your request could not be processed");
-						}*/
-			});//.done( function( data ) {
-				//var books = $.parseJSON(data);
-				//$.each(books,  function() {
-				//	toRet += printBook(this["ImageLink"], this["Title"], this["Author"], this["ISBN"], this["ItemShape"], this["Price"]);
-				//});
-			//});
+			});
 			 alert("Account created!");
 			 //then go to home page.
 		}

@@ -16,6 +16,7 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 <body>
 
 <script type = "text/JavaScript">
+
 	function onSelectType() {
 		var selector = document.getElementById("item_type");
 		var type = selector.value;
@@ -29,19 +30,81 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 			document.getElementById("other_table").style.display = "inline";
 			document.getElementById("book_table").style.display = "none";
 		}
-	};
+	}
 	
-	function insertImage() {
-		//var temp = "C:\Users\Erich\Pictures\windowslogo.jpg";
-		 $.ajax({
-				type: "POST",
-				url: "insertPhoto.php",
-				//data: {
-					//		image: temp
-						//},
-				async: false
-			});
-	};
+	function submitForm() {
+		var type = document.getElementById("item_type").value;
+		//TODO we need to get the email of the user currently logged in
+		//email is hardcoded for now
+		var email = "erichk@iastate.edu";
+		var name = document.getElementById("name").value;
+		var price = document.getElementById("price").value;
+		var shape = document.getElementById("condition").value;
+		var description = document.getElementById("description").value;
+		var link = document.getElementById("img_file").value;
+		alert("got here");
+		if(type == "book"){
+			alert("book");
+			var isbn = document.getElementById("isbn").value;
+			var author = document.getElementById("author").value;
+			var title = document.getElementById("title").value;
+			$.ajax({
+					type: "POST",
+					url: "insertNewItem.php",
+					data: {
+								title: title,
+								author : author,
+								isbn : isbn,
+								price : price,
+								description : description,
+								link : link,
+								shape : shape,
+								email : email,
+								book : type
+							},
+					async: false
+				});
+		}
+		else {
+			$.ajax({
+					type: "POST",
+					url: "insertNewItem.php",
+					data: {
+								name : name,
+								price : price,
+								description : description,
+								link : link,
+								shape : shape,
+								email : email,
+								book : type
+							},
+					async: false
+				})
+		}
+	}
+	
+	function getAmazonData() {
+		var isbn = document.getElementById("isbn").value;
+		alert(isbn);
+		var myVar;
+		$.get("executeAmazonAPI.php", {"isbn": isbn}, function (resp) {
+		  myVar = resp;
+		  alert(myVar);
+		});
+		//$.ajax({
+			//		type: "POST",
+			//		url: "executeAmazonAPI.php",
+			//		data: {
+			//					isbn : isbn
+			//				},
+			//		async: false
+			//	})
+		//TODO get data back from php script...		
+		var title = "";
+		var author = "";
+		var img_url = "";
+		
+	}
 </script>
 
 <div class="container">
@@ -80,7 +143,7 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 		</tr>
 		<tr class="spaceUnder">
 			<td>ISBN: </td>
-			<td><input type="text" id="isbn"></td>
+			<td><input type="text" id="isbn" onchange="getAmazonData()"></td>
 		</tr>
 		<tr class="spaceUnder">
 			<td>Description: </td>
@@ -157,7 +220,7 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 	<br>
 	<br>
 	<button id="canel_item" type="button" style="float:right">Cancel</button>
-	<button id="submit_item" type="submit" style="float:right" onclick="insertImage()">Submit</button>
+	<button id="submit_item" type="submit" style="float:right" onclick="submitForm()">Submit</button>
 	
   <!-- end .content --></div>
   <div class="footer">
