@@ -3,15 +3,15 @@ var arrIds = new Array();
 function printBook(src, title, author, isbn, condition, asking)
 {
 	var id = "edititem" + num;
-	var toReturn = "<div id='items'><div id='centerdiv' ><div id='picture'>" + 
+	var toReturn = "<div class='panel panel-default' id='items'><div class='panel-body' id='centerdiv' ><div id='picture' class='col-md-3'>" + 
 					"<img id='pictureimg' src=" + src + ">" +
-					"</div><div id='info" + id + "' class='info'><p style='padding-left:1em; line-height:2.0em'>" + 
-					"Item Informaton: <button id=" + id + " onClick='itemEdit(this.id)'>Edit</button><br>" + 
-					"Title:<span>" + title +"</span><br>" +
-					"Author:<span>" + author + "</span><br>" +
-					"ISBN:<span>" + isbn + "</span><br>" +
-					"Item Condition:<span>" + condition + "</span><br>" +
-					"Asking Price:<span>" + asking + "</span><br></p></div></div></div><br>";
+					"</div><div name='information' id='info" + id + "' class='col-md-7'><table class='table table-bordered'><col width='25%'><col width='75%'>" + 
+					"<thead><tr><th colspan='2'>Item Informaton <button type='button'class='btn btn-default btn-xs' id=" + id + " onClick='itemEdit(this.id)'>Edit</button></th></tr></thead>" + 
+					"<tbody><tr><td style='vertical-align:middle' height='45'><strong>Title</strong></td> <td style='vertical-align:middle' height='45'><span>" + title +"</span></td></tr>" +
+					"<tr><td style='vertical-align:middle' height='45'><strong>Author</strong></td><td style='vertical-align:middle' height='45'><span>" + author + "</span></td></tr>" +
+					"<tr><td style='vertical-align:middle' height='45'><strong>ISBN</strong></td><td style='vertical-align:middle' height='45'><span>" + isbn + "</span></td></tr>" +
+					"<tr><td style='vertical-align:middle' height='45'><strong>Item Condition</strong></td><td style='vertical-align:middle' height='45'><span>" + condition + "</span></td></tr>" +
+					"<tr><td style='vertical-align:middle' height='45'><strong>Asking Price</strong></td><td style='vertical-align:middle' height='45'><span>" + asking + "</span></td></tr></tbody></table></div></div></div><br>";
 	num += 1;
 	return toReturn;
 	/*return "balls";*/
@@ -45,25 +45,25 @@ function getBooks(email)
 
 function printInfo(name, email, phone, created, sale, sold, rating)
 {	
-	var toReturn = "<div  style='width:86%; height:15em; margin:auto' ><table style='width:100%; height:100%'>" +
-				"<tr style='width:100%; height:100%'><td style='width:50%; height:100%'><div id='userinfo'>" +
-				"<table id='usertable' border='1px' style='width:100%; height:100%'><thead><tr><th colspan='2'>User Information <button id='edituser'>Edit</button></th></tr>" +
-				"</thead><tbody><tr><td>Name</td><td id='nameuser'>" + name + "</td></tr><tr>" +
-				"<td>Email</td><td id='emailuser'>" + email + "</td></tr><tr>" +
-				"<td>Phone</td><td id='phoneuser'>" + phone + "</td></tr><tr>" +
-				"<td>Created</td><td>" + created + "</td></tr></tbody></table>" +
+	var toReturn = "<div class='' style='width:86%; height:16em; margin:auto' ><table style='width:100%; height:100%'>" +
+				"<tr style='width:100%; height:100%'><td style='width:50%; height:100%'><div class='panel panel-default'>" +
+				"<table class='table table-bordered' id='usertable'  style='width:100%; height:100%'><thead><tr><th colspan='2'>User Information <button type='button' id='edituser' class='btn btn-default btn-xs'>Edit</button></th></tr>" +
+				"</thead><tbody><tr><td style='vertical-align:middle' height='45'><strong>Name</strong></td><td style='vertical-align:middle' height='45' id='nameuser'>" + name + "</td></tr><tr>" +
+				"<td style='vertical-align:middle' height='45'><strong>Email</strong></td><td style='vertical-align:middle' height='45' id='emailuser'>" + email + "</td></tr><tr>" +
+				"<td style='vertical-align:middle' height='45'><strong>Phone</strong></td><td style='vertical-align:middle' height='45' id='phoneuser'>" + phone + "</td></tr><tr>" +
+				"<td style='vertical-align:middle' height='45'><strong>Created</strong></td><td style='vertical-align:middle' height='45'>" + created + "</td></tr></tbody></table>" +
 				"<!--<p style='padding-left:1em; line-height:2.0em'>User Information: edit<br>First Name:<br>" +
 				"Last Name:<br>Email Address:<br>Date Created:<br></p>-->" +
-				"</div></td><td style='width:50%; height:100%'><div id='userinfo'>" +
-				"<table border='1px' style='width:100%; height:100%'><thead><tr><th colspan='2'>" +
-				"Seller Information</th></tr></thead><tbody><tr><td>Number of Books for Sale</td>" +
-				"<td>" + sale + "</td></tr><tr>" +
-				"<td>Number of Books Sold</td><td>" + sold + "</td></tr><tr>" +
-				"<td>Current Seller Rating</td><td>" + rating + "/5.0</td></tr><tr>" +
-				"<td>View Rating</td><td>" + "Link" + "</td></tr></tbody></table>" +
+				"</div></td><td style='width:50%; height:100%'><div class='panel panel-default'>" +
+				"<table class='table table-bordered' style='width:100%; height:100%'><thead><tr><th colspan='2'>" +
+				"Seller Information<button style='visibility:hidden' type='button' class='btn btn-default btn-xs'>Edit</button></th></tr></thead><tbody><tr><td style='vertical-align:middle' height='45'><strong>Number of Books for Sale</strong></td>" +
+				"<td style='vertical-align:middle' height='45'>" + sale + "</td></tr><tr>" +
+				"<td style='vertical-align:middle' height='45'><strong>Number of Books Sold</strong></td><td style='vertical-align:middle' height='45'>" + sold + "</td></tr><tr>" +
+				"<td style='vertical-align:middle' height='45'><strong>Current Seller Rating</strong></td><td style='vertical-align:middle' height='45'>" + rating + "/5.0</td></tr><tr>" +
+				"<td style='vertical-align:middle' height='45'><strong>View Rating</strong></td><td style='vertical-align:middle' height='45'>" + "Link" + "</td></tr></tbody></table>" +
 				"<!--<p style='padding-left:1em; line-height:2.0em'>Seller Information: edit<br>" +
 				"Number of Books for Sale: <br>Number of Books Sold:<br>Current Seller Rating:<br>" +
-				"View Rating:<br></p>--></div></td></tr></table></div>";
+				"View Rating:<br></p>--></div></td></tr></table></div><br>";
 	return toReturn;
 }
 
@@ -141,7 +141,7 @@ function editFunc()
 		if( ID == 'nameuser' && edit == 1)
 		{
 			name = $(this).html();
-			$(this).html("<textarea rows=1 id='nametext' style='resize:none'>" +name+"</textarea>");
+			$(this).html("<textarea cols='35' rows=1 id='nametext' style='resize:none'>" +name+"</textarea>");
 		}
 		else if( ID == 'nameuser' && edit == 0)
 		{
@@ -155,7 +155,7 @@ function editFunc()
 		else if( ID == 'emailuser' && edit == 1)
 		{
 			name = $(this).html();
-			$(this).html("<textarea rows=1 id='emailtext' style='resize:none'>" +name+"</textarea>");
+			$(this).html("<textarea cols='35' rows=1 id='emailtext' style='resize:none'>" +name+"</textarea>");
 		}
 		else if( ID == 'emailuser' && edit == 0)
 		{
@@ -169,7 +169,7 @@ function editFunc()
 		else if( ID == 'phoneuser' && edit == 1)
 		{
 			name = $(this).html();
-			$(this).html("<textarea rows=1 id='phonetext' style='resize:none'>" +name+"</textarea>");
+			$(this).html("<textarea cols='35' rows=1 id='phonetext' style='resize:none'>" +name+"</textarea>");
 		}
 		else if( ID == 'phoneuser' && edit == 0)
 		{
@@ -218,7 +218,7 @@ function itemEdit(id)
 		$(button).text("Save");
 		$(name).each(function () {
 			var temp = $(this).text();
-			$(this).html("<textarea id='textarea" + id + "' style='margin:0;resize:none;vertical-align:middle' rows=1 id='nametext'>" +temp+"</textarea>");
+			$(this).html("<textarea cols='75' id='textarea" + id + "' style='margin:0;resize:none;vertical-align:middle' rows=1 id='nametext'>" +temp+"</textarea>");
 		});
 	}
 	else if(buttontext == "Save")
