@@ -85,24 +85,15 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 	
 	function getAmazonData() {
 		var isbn = document.getElementById("isbn").value;
-		alert(isbn);
-		var myVar;
+		var img_url;
+		var title;
+		var author;
 		$.get("executeAmazonAPI.php", {"isbn": isbn}, function (resp) {
-		  myVar = resp;
-		  alert(myVar);
-		});
-		//$.ajax({
-			//		type: "POST",
-			//		url: "executeAmazonAPI.php",
-			//		data: {
-			//					isbn : isbn
-			//				},
-			//		async: false
-			//	})
-		//TODO get data back from php script...		
-		var title = "";
-		var author = "";
-		var img_url = "";
+			var myVar = resp;	
+			document.getElementById("img_file").value = myVar[0];
+			document.getElementById("title").value = myVar[1];
+			document.getElementById("author").value = myVar[2];
+		}, "json");
 		
 	}
 </script>
