@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script>  var $itemAllArr = new Array(); </script>
 <?php
@@ -274,13 +277,13 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="#">Brand</a>
+    <a class="navbar-brand" href="">TextbookTrader</a>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-      <li><a href="#">Home</a></li>
+      <li><a href="index.php">Home</a></li>
       <li><a href="#">About Us</a></li>
     <li><a href="#">Contact Us</a></li>
     </ul>
@@ -298,7 +301,11 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
       <ul class="nav nav-list">
         <li class="nav-header">Navigation</li>
         <li class="active"><a href="#">Buy</a></li>
-        <li><a href="#">Sell</a></li>
+<?php
+  if(isset($_SESSION['login']) && $_SESSION['login'] == "1") {
+        echo "<li><a href='myaccount.php'>Sell</a></li>";
+  }
+?>
         <li><a href="#"></a></li>
       </ul>
     </div>
@@ -335,31 +342,10 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
       </form>
     </div>
     <div class="resultsPaneArr" style="overflow:scroll; height:400px;">
-<!--     <table class='table table-striped'>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Item Name</th>
-            <th>Description</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-      </table> -->
       <script type='text/javascript'>
         // $('.resultsPaneArr').append(resultsPaneGenerator());
         $('.resultsPaneArr').append(resultsTableGenerator());
       </script>
-<!--       <div class="resultsPane itemFont">
-        <div class="itemPhoto">
-          <img src="http://www.nationalbookauctions.com/SmallBookIcon.jpg" alt="Book">
-        </div>
-        <div class="itemName itemFont">
-        </div>
-        <div class="itemDescripShort itemDescriptionFont">
-        </div>
-        <div class="itemPrice itemFont">
-        </div>
-      </div> -->
 
     </div>
     <!-- end .content --></div>
