@@ -1,17 +1,19 @@
 var num = 0;
 var arrIds = new Array();
-function printBook(src, title, author, isbn, condition, asking)
+function printBook(src, title, author, isbn, condition, asking, description)
 {
 	var id = "edititem" + num;
-	var toReturn = "<div class='panel panel-default' id='items'><div class='panel-body' id='centerdiv' ><div id='picture' class='col-md-3'>" + 
+	var toReturn = "<table id='tabd" + id + "' class='table table-bordered'><tr><td align='center' class='col-md-3' style='vertical-align:middle'>" + 
 					"<img id='pictureimg' src=" + src + ">" +
-					"</div><div name='information' id='info" + id + "' class='col-md-7'><table class='table table-bordered'><col width='25%'><col width='75%'>" + 
+					"</td><td align='center' style='vertical-align:middle'><table style='margin:auto;' id='info" + id + "' class='table table-bordered'><col width='25%'><col width='75%'>" + 
 					"<thead><tr><th colspan='2'>Item Informaton <button type='button'class='btn btn-default btn-xs' id=" + id + " onClick='itemEdit(this.id)'>Edit</button></th></tr></thead>" + 
 					"<tbody><tr><td style='vertical-align:middle' height='45'><strong>Title</strong></td> <td style='vertical-align:middle' height='45'><span>" + title +"</span></td></tr>" +
 					"<tr><td style='vertical-align:middle' height='45'><strong>Author</strong></td><td style='vertical-align:middle' height='45'><span>" + author + "</span></td></tr>" +
 					"<tr><td style='vertical-align:middle' height='45'><strong>ISBN</strong></td><td style='vertical-align:middle' height='45'><span>" + isbn + "</span></td></tr>" +
 					"<tr><td style='vertical-align:middle' height='45'><strong>Item Condition</strong></td><td style='vertical-align:middle' height='45'><span>" + condition + "</span></td></tr>" +
-					"<tr><td style='vertical-align:middle' height='45'><strong>Asking Price</strong></td><td style='vertical-align:middle' height='45'><span>" + asking + "</span></td></tr></tbody></table></div></div></div><br>";
+					"<tr><td style='vertical-align:middle' height='45'><strong>Asking Price</strong></td><td style='vertical-align:middle' height='45'><span>" + asking + "</span></td></tr></tbody></table><br>" + 
+					"</td></tr><tr><td colspan='2'><h4>Description  <button type='button' class='btn btn-default btn-xs' id='d" + id + "' onClick='descriptEdit(this.id)'>Edit</button></h4>" + 
+					"<div><span>" + description + "</span></div></td></tr></table>";
 	num += 1;
 	return toReturn;
 	/*return "balls";*/
@@ -37,7 +39,7 @@ function getBooks(email)
 		var books = $.parseJSON(data);
 		$.each(books,  function() {
 			arrIds[i++] = this["ID"];
-			toRet += printBook(this["ImageLink"], this["Title"], this["Author"], this["ISBN"], this["ItemShape"], this["Price"]);
+			toRet += printBook(this["ImageLink"], this["Title"], this["Author"], this["ISBN"], this["ItemShape"], this["Price"], this['Description']);
 		});
 	});
 	return toRet;
@@ -45,17 +47,17 @@ function getBooks(email)
 
 function printInfo(name, email, phone, created, sale, sold, rating)
 {	
-	var toReturn = "<div class='' style='width:86%; height:16em; margin:auto' ><table style='width:100%; height:100%'>" +
-				"<tr style='width:100%; height:100%'><td style='width:50%; height:100%'><div class='panel panel-default'>" +
-				"<table class='table table-bordered' id='usertable'  style='width:100%; height:100%'><thead><tr><th colspan='2'>User Information <button type='button' id='edituser' class='btn btn-default btn-xs'>Edit</button></th></tr>" +
+	var toReturn = "<table style='width:100%; height:100%'>" +
+				"<tr style='width:100%; height:100%'><td style='width:50%; height:100%'>" +
+				"<table class='table table-bordered' id='usertable'  style='width:100%; height:100%'><col width='25%'><col width='75%'><thead><tr><th colspan='2'>User Information <button type='button' id='edituser' class='btn btn-default btn-xs'>Edit</button></th></tr>" +
 				"</thead><tbody><tr><td style='vertical-align:middle' height='45'><strong>Name</strong></td><td style='vertical-align:middle' height='45' id='nameuser'>" + name + "</td></tr><tr>" +
 				"<td style='vertical-align:middle' height='45'><strong>Email</strong></td><td style='vertical-align:middle' height='45' id='emailuser'>" + email + "</td></tr><tr>" +
 				"<td style='vertical-align:middle' height='45'><strong>Phone</strong></td><td style='vertical-align:middle' height='45' id='phoneuser'>" + phone + "</td></tr><tr>" +
 				"<td style='vertical-align:middle' height='45'><strong>Created</strong></td><td style='vertical-align:middle' height='45'>" + created + "</td></tr></tbody></table>" +
 				"<!--<p style='padding-left:1em; line-height:2.0em'>User Information: edit<br>First Name:<br>" +
 				"Last Name:<br>Email Address:<br>Date Created:<br></p>-->" +
-				"</div></td><td style='width:50%; height:100%'><div class='panel panel-default'>" +
-				"<table class='table table-bordered' style='width:100%; height:100%'><thead><tr><th colspan='2'>" +
+				"</td><td style='width:50%; height:100%'>" +
+				"<table class='table table-bordered' style='width:100%; height:100%'><col width='75%'><col width='25%'><thead><tr><th colspan='2'>" +
 				"Seller Information<button style='visibility:hidden' type='button' class='btn btn-default btn-xs'>Edit</button></th></tr></thead><tbody><tr><td style='vertical-align:middle' height='45'><strong>Number of Books for Sale</strong></td>" +
 				"<td style='vertical-align:middle' height='45'>" + sale + "</td></tr><tr>" +
 				"<td style='vertical-align:middle' height='45'><strong>Number of Books Sold</strong></td><td style='vertical-align:middle' height='45'>" + sold + "</td></tr><tr>" +
@@ -63,7 +65,7 @@ function printInfo(name, email, phone, created, sale, sold, rating)
 				"<td style='vertical-align:middle' height='45'><strong>View Rating</strong></td><td style='vertical-align:middle' height='45'>" + "Link" + "</td></tr></tbody></table>" +
 				"<!--<p style='padding-left:1em; line-height:2.0em'>Seller Information: edit<br>" +
 				"Number of Books for Sale: <br>Number of Books Sold:<br>Current Seller Rating:<br>" +
-				"View Rating:<br></p>--></div></td></tr></table></div><br>";
+				"View Rating:<br></p>--></td></tr></table><br>";
 	return toReturn;
 }
 
@@ -205,6 +207,24 @@ function updateBook(title, author, isbn, condition, price, id)
 	});*/
 }
 
+function updateDescript(description, id)
+{
+	$.ajax({
+	type: "POST",
+	url: "myaccount_files/php_scripts/my_account_updatedescript.php",
+	data: {
+				Description : description,
+				ID : id
+			},
+	async: false
+	});/*.done( function( data ) {
+		var user = $.parseJSON(data);
+				$.each(user,  function() {
+					toRet = printInfo("" + this["FName"] + this["LName"], this["Email"], this["Phone"], this["DCreated"], this["BooksForSale"], this["BooksSold"], rating);
+				});
+	});*/
+}
+
 function itemEdit(id)
 {	
 	var button = "#" + id;
@@ -235,10 +255,61 @@ function itemEdit(id)
 		});
 		updateBook(info[0], info[1], info[2], info[3], parseInt(info[4]), arrIds[numID]);
 	}
-	
-	
+}
+
+function descriptEdit(id)
+{	
+	var button = "#" + id;
+	var re = new RegExp("[0-9]");
+	var num = id.search(re);
+	var numID = parseInt(id.substring(num,id.length));
+	var buttontext = $(button).text();
+	var name = "#tab" + id + " tr td div span";
+	if(buttontext == "Edit")
+	{
+		$(button).text("Save");
+		$(name).each(function () {
+			var temp = $(this).text();
+			$(this).html("<textarea cols='100' id='textaread" + id + "' style='margin:0;resize:none;vertical-align:middle' rows=3>" +temp+"</textarea>");
+		});
+	}
+	else if(buttontext == "Save")
+	{
+		//name = "#info" + id + " textarea";
+		var info;
+		$(button).text("Edit");
+		$(name).each(function () {
+			var toget = "#textaread" + id;
+			var temp = $(toget).val();
+			info = temp;
+			$(this).html(temp);
+		});
+		updateDescript(info, arrIds[numID]);
+	}
 }
 
 $(document).ready( function() {
 	$('#edituser').click( function () { editFunc(); });
 });
+/*
+"<div class='panel panel-default' id='items'><div class='panel-body' id='centerdiv' ><div id='picture' class='col-md-3'>" + 
+					"<img id='pictureimg' src=" + src + ">" +
+					"</div><div name='information' id='info" + id + "' class='col-md-7'><table class='table table-bordered'><col width='25%'><col width='75%'>" + 
+					"<thead><tr><th colspan='2'>Item Informaton <button type='button'class='btn btn-default btn-xs' id=" + id + " onClick='itemEdit(this.id)'>Edit</button></th></tr></thead>" + 
+					"<tbody><tr><td style='vertical-align:middle' height='45'><strong>Title</strong></td> <td style='vertical-align:middle' height='45'><span>" + title +"</span></td></tr>" +
+					"<tr><td style='vertical-align:middle' height='45'><strong>Author</strong></td><td style='vertical-align:middle' height='45'><span>" + author + "</span></td></tr>" +
+					"<tr><td style='vertical-align:middle' height='45'><strong>ISBN</strong></td><td style='vertical-align:middle' height='45'><span>" + isbn + "</span></td></tr>" +
+					"<tr><td style='vertical-align:middle' height='45'><strong>Item Condition</strong></td><td style='vertical-align:middle' height='45'><span>" + condition + "</span></td></tr>" +
+					"<tr><td style='vertical-align:middle' height='45'><strong>Asking Price</strong></td><td style='vertical-align:middle' height='45'><span>" + asking + "</span></td></tr></tbody></table></div></div></div><br>";
+
+
+
+"<div class='panel panel-default' id='items'><div class='panel-body' id='centerdiv' ><div id='picture' class='col-md-3'>" + 
+					"<img id='pictureimg' src=" + src + ">" +
+					"</div><div name='information' id='info" + id + "' class='col-md-7'><table class='table table-bordered'><col width='25%'><col width='75%'>" + 
+					"<thead><tr><th colspan='2'>Item Informaton <button type='button'class='btn btn-default btn-xs' id=" + id + " onClick='itemEdit(this.id)'>Edit</button></th></tr></thead>" + 
+					"<tbody><tr><td style='vertical-align:middle' height='45'><strong>Title</strong></td> <td style='vertical-align:middle' height='45'><span>" + title +"</span></td></tr>" +
+					"<tr><td style='vertical-align:middle' height='45'><strong>Author</strong></td><td style='vertical-align:middle' height='45'><span>" + author + "</span></td></tr>" +
+					"<tr><td style='vertical-align:middle' height='45'><strong>ISBN</strong></td><td style='vertical-align:middle' height='45'><span>" + isbn + "</span></td></tr>" +
+					"<tr><td style='vertical-align:middle' height='45'><strong>Item Condition</strong></td><td style='vertical-align:middle' height='45'><span>" + condition + "</span></td></tr>" +
+					"<tr><td style='vertical-align:middle' height='45'><strong>Asking Price</strong></td><td style='vertical-align:middle' height='45'><span>" + asking + "</span></td></tr></tbody></table></div></div></div><br>";					*/
