@@ -134,26 +134,11 @@
 		</div>
 		<div class="col-md-10"  id="posthere">
 		
-		<!--
-		<div class='panel panel-default' id='items'>
-			<div  class='panel-body'>
-				<div  id='picture' class='col-md-3'>
-					<img id='pictureimg' src='http://ecx.images-amazon.com/images/I/518mhMH0IoL._SY300_.jpg'>
-				</div>
-				<div id='info' class='col-md-7'>
-				<table class='table table-bordered'>
-					<col width="25%">
-					<col width="75%">
-					<thead><tr><th colspan='2'>Item Informaton <button onClick='itemEdit(this.id)'>Edit</button></th></tr></thead>
-					<tbody><tr><td><strong>Title</strong></td><span> <td>title </td></span></tr>
-					<tr><td><strong>Author</strong></td><span> <td>author </td></span></tr>
-					<tr><td><strong>ISBN</strong></td><span> <td>isbn </td></span></tr>
-					<tr><td><strong>Item Condition</strong></td><span><td>condition </td></span></tr>
-					<tr><td><strong>Asking Price</strong></td><span><td>asking</td></span></tr></tbody>
-				</table>
-				</div>
-			</div>
-		</div><br> -->
+	
+		
+	
+		
+		<br>
 					
 		
 		<script type="text/javascript">
@@ -163,6 +148,35 @@
 		$("#posthere").append(getUser("bpassini@iastate.edu"));
 		$("#posthere").append(getBooks("bpassini@iastate.edu"));
 	</script>
+			<!--
+			<table class='table table-bordered'>
+			<tr  >
+				<td align='center' class='col-md-3' style='vertical-align:middle'>
+				
+					<img id='pictureimg' src='http://ecx.images-amazon.com/images/I/518mhMH0IoL._SY300_.jpg'>
+			
+				</td>
+				<td align='center' >
+				<table class='table'>
+					<col width="25%">
+					<col width="75%">
+					<thead><tr><th colspan='2'>Item Informaton <button onClick='itemEdit(this.id)'>Edit</button></th></tr></thead>
+					<tbody><tr><td><strong>Title</strong></td><span> <td>title </td></span></tr>
+					<tr><td><strong>Author</strong></td><span> <td>author </td></span></tr>
+					<tr><td><strong>ISBN</strong></td><span> <td>isbn </td></span></tr>
+					<tr><td><strong>Item Condition</strong></td><span><td>condition </td></span></tr>
+					<tr><td><strong>Asking Price</strong></td><span><td>asking</td></span></tr></tbody>
+				</table>
+				</td>
+			</tr>
+			<tr>
+			<td colspan='2'>
+			<h4>Description  <button type='button' id='edituser' class='btn btn-default btn-xs'>Edit</button></h4>
+				hello there dear person please let me know what i can do to help you out kind sir<br>sadgkjashgklasgjasgasg<br>fdhshah
+			</td>
+			</tr>
+			</table>
+	-->
 	<!--
 	<div class='panel panel-primary'>
 		<div class='panel panel-heading'>Book</div>

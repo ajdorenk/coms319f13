@@ -4,6 +4,7 @@ div[name='information'] {
 	margin:auto;
 }
 
+
 #items {
 
 	width:85%;
@@ -45,8 +46,7 @@ div[name='information'] {
 
 #pictureimg {
 	/*position:absolute;*/
-	margin-left:8%;
-	height:100%;
+	height:18em;
 }
 
 #userinfo {

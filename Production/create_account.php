@@ -5,12 +5,39 @@
 <link href="createAccount_style.css" rel="stylesheet" type="text/css">
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<link href="style.css" rel="stylesheet" type="text/css"><!--[if lte IE 7]>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="../bootstrap/bootstrap.min.js"></script>
+<script src="../bootstrap/carousel.js"></script>
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/carousel.css">
+<!-- <link href="style.css" rel="stylesheet" type="text/css">
 <style>
 .content { margin-right: -1px; } /* this 1px negative margin can be placed on any of the columns in this layout with the same corrective effect. */
 ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it needs to correct extra whiltespace between the links */
 </style>
 <![endif]-->
+<style type="text/css">
+      body {
+    padding-top: 70px;
+        padding-bottom: 40px;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    .container {
+    max-width : 100%;
+    }
+    
+    .jumbotron {
+    background-color: "blue";
+    }
+</style>
 </head>
 
 <body>
@@ -134,17 +161,59 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 	}
 </script>
 
-<div class="container">
-  <div class="header"><a href="#"><img src="" alt="Insert Logo Here" name="Insert_logo" width="20%" height="90" id="Insert_logo" style="background-color: #8090AB; display:block;" /></a> 
-  <!-- end .header --></div>
-  <div class="sidebar1">
-    <ul class="nav">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="">TextbookTrader</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
       <li><a href="index.php">Home</a></li>
-      <li><a href="results.php">Search</a></li>
-      <li><a href="myaccount.php">Seller Page</a></li>
       <li><a href="#">About Us</a></li>
+    <li><a href="#">Contact Us</a></li>
     </ul>
-    <!-- end .sidebar1 --></div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#">Log In</a></li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+
+<div class="container">
+ 
+  <div class="row">
+  <div class="col-md-2">
+    <div class="well sidebar-nav">
+      <ul class="nav nav-list">
+        <li class="nav-header">Navigation</li>
+        <li class="active"><a href="#">Buy</a></li>
+        <li><a href="#">Sell</a></li>
+        <li><a href="#"></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-10">
+
+<?php
+  // <div class="header"><a href="#"><img src="" alt="Insert Logo Here" name="Insert_logo" width="20%" height="90" id="Insert_logo" style="background-color: #8090AB; display:block;" /></a> 
+  // <!-- end .header --></div>
+  // <div class="sidebar1">
+  //   <ul class="nav">
+  //     <li><a href="index.php">Home</a></li>
+  //     <li><a href="results.php">Search</a></li>
+  //     <li><a href="myaccount.php">Seller Page</a></li>
+  //     <li><a href="#">About Us</a></li>
+  //   </ul>
+  //   <!-- end .sidebar1 --></div>
+?>
+
   <div class="content">
 	<h2>Create An Account</h2>
 	<br>
