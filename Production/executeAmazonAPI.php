@@ -14,8 +14,17 @@ $img_src = $response->Items->Item->LargeImage->URL;
 $title = $response->Items->Item->ItemAttributes->Title;
 $authors = $response->Items->Item->ItemAttributes->Author;
 
+$size = count($authors);
 //might want to consider including cases for multiple authors
-$data = array($img_src, $title, $authors[0]);
+if($size > 1){
+	$data = array($img_src, $title, $size);
+	for($x = 0; $x<$size; $x++){
+		array_push($data, $authors[$x]);
+	}
+}
+else{
+	$data = array($img_src, $title, $size, $authors);
+}
 
 echo json_encode($data);
 ?>

@@ -84,17 +84,38 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 	}
 	
 	function getAmazonData() {
-		var isbn = document.getElementById("isbn").value;
-		var img_url;
-		var title;
-		var author;
-		$.get("executeAmazonAPI.php", {"isbn": isbn}, function (resp) {
-			var myVar = resp;	
-			document.getElementById("img_file").value = myVar[0];
-			document.getElementById("title").value = myVar[1];
-			document.getElementById("author").value = myVar[2];
-		}, "json");
-		
+		var check = document.getElementById("enable");
+		if(check.checked){
+			var isbn = document.getElementById("isbn").value;
+			var img_url;
+			var title;
+			var author;
+			$.get("executeAmazonAPI.php", {"isbn": isbn}, function (resp) {
+				var myVar = resp;
+				alert(myVar[2]);
+				var size = myVar[2];
+				if(size > 1){
+					document.getElementById("img_file").value = myVar[0];
+					document.getElementById("image").src = myVar[0];
+					document.getElementById("title").value = myVar[1];
+					var authors = document.getElementById("author");
+					for(var i = 0; i < size; i++){
+						if(i == 0){
+							authors.value = myVar[3+i];
+						}
+						else{
+							authors.value += ", " + myVar[3+i];
+						}	
+					}
+				}
+				else{
+					document.getElementById("img_file").value = myVar[0];
+					document.getElementById("image").src = myVar[0];
+					document.getElementById("title").value = myVar[1];
+					document.getElementById("author").value = myVar[3];
+				}
+			}, "json");
+		}
 	}
 </script>
 
@@ -135,6 +156,7 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 		<tr class="spaceUnder">
 			<td>ISBN: </td>
 			<td><input type="text" id="isbn" onchange="getAmazonData()"></td>
+			<td><input type="checkbox" id="enable">Enable ISBN auto-fill.</td>
 		</tr>
 		<tr class="spaceUnder">
 			<td>Description: </td>
@@ -162,7 +184,7 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 		</tr>
 		<tr class="spaceUnder">
 			<td><label for="img_file">Image:</label></td>
-			<td><img src="placeholder.jpg" height="125px" width="120px"></td>
+			<td><img src="placeholder.jpg" height="125px" width="120px" id="image"></td>
 			<td align="top">
 				<input type="text" id="img_file">
 				<button type="button">Browse Computer</button>
@@ -201,7 +223,7 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 		</tr>
 		<tr class="spaceUnder">
 			<td><label for="img_file">Image:</label></td>
-			<td><img src="placeholder.jpg" height="125px" width="120px"></td>
+			<td><img src="placeholder.jpg" height="125px" width="120px" id="image"></td>
 			<td align="top">
 				<input type="text" id="img_file">
 				<button type="button">Browse Computer</button>
