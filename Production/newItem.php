@@ -4,6 +4,7 @@
 <title>Untitled Document</title>
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <link href="newItem_style.css" rel="stylesheet" type="text/css">
 <link href="style.css" rel="stylesheet" type="text/css"><!--[if lte IE 7]>
 <style>
@@ -34,49 +35,51 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 	
 	function submitForm() {
 		var type = document.getElementById("item_type").value;
-		//TODO we need to get the email of the user currently logged in
-		//email is hardcoded for now
-		var email = "erichk@iastate.edu";
 		var name = document.getElementById("name").value;
 		var price = document.getElementById("price").value;
 		var shape = document.getElementById("condition").value;
 		var description = document.getElementById("description").value;
 		var link = document.getElementById("img_file").value;
-		alert("got here");
 		if(type == "book"){
-			alert("book");
 			var isbn = document.getElementById("isbn").value;
 			var author = document.getElementById("author").value;
 			var title = document.getElementById("title").value;
+			alert("calling ajax");
 			$.ajax({
 					type: "POST",
-					url: "insertNewItem.php",
+					url: "insertItem.php",
 					data: {
-								title: title,
-								author : author,
-								isbn : isbn,
+								name : title,
 								price : price,
 								description : description,
 								link : link,
-								shape : shape,
-								email : email,
-								book : type
+								shape : shape
 							},
 					async: false
 				});
+				alert("success one");
+			$.ajax({
+				type: "POST",
+				url: "insertBook.php",
+				data: {
+							title : title,
+							author : author,
+							isbn : isbn
+						},
+				async: false
+			});
+			alert("success both");
 		}
 		else {
 			$.ajax({
 					type: "POST",
-					url: "insertNewItem.php",
+					url: "insertItem.php",
 					data: {
 								name : name,
 								price : price,
 								description : description,
 								link : link,
-								shape : shape,
-								email : email,
-								book : type
+								shape : shape
 							},
 					async: false
 				})
