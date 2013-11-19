@@ -6,12 +6,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <link href="newItem_style.css" rel="stylesheet" type="text/css">
-<link href="style.css" rel="stylesheet" type="text/css"><!--[if lte IE 7]>
-<style>
-.content { margin-right: -1px; } /* this 1px negative margin can be placed on any of the columns in this layout with the same corrective effect. */
-ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it needs to correct extra whiltespace between the links */
-</style>
-<![endif]-->
+<link href="style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -40,51 +35,50 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 		var shape = document.getElementById("condition").value;
 		var description = document.getElementById("description").value;
 		var link = document.getElementById("img_file").value;
+		if(document.getElementById("negotiations").checked){
+			var negotiate = 1;
+		}else {
+			var negotiate = 0;
+		}
 		if(type == "book"){
 			var isbn = document.getElementById("isbn").value;
 			var author = document.getElementById("author").value;
 			var title = document.getElementById("title").value;
-			alert("calling ajax");
 			$.ajax({
 					type: "POST",
-					url: "insertItem.php",
+					url: "insertNewItem.php",
 					data: {
 								name : title,
 								price : price,
 								description : description,
 								link : link,
-								shape : shape
+								shape : shape,
+								negotiate : negotiate,
+								title : title,
+								author : author,
+								isbn : isbn,
+								book : type
 							},
 					async: false
-				});
-				alert("success one");
-			$.ajax({
-				type: "POST",
-				url: "insertBook.php",
-				data: {
-							title : title,
-							author : author,
-							isbn : isbn
-						},
-				async: false
-			});
-			alert("success both");
+				});			
 		}
 		else {
 			$.ajax({
 					type: "POST",
-					url: "insertItem.php",
+					url: "insertNewItem.php",
 					data: {
 								name : name,
 								price : price,
 								description : description,
 								link : link,
-								shape : shape
+								shape : shape,
+								negotiate : negotiate
 							},
 					async: false
-				})
+				});
 		}
 	}
+	
 	
 	function getAmazonData() {
 		var check = document.getElementById("enable");
