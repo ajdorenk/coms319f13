@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 				// session_start();
 				$_SESSION['login'] = "1";
 				$_SESSION['Email'] = $resultArr['Email'];
-				$_SESSION['FName'] = $resultArr['Fname'];
+				$_SESSION['FName'] = $resultArr['FName'];
 				$_SESSION['LName'] = $resultArr['LName'];
 				// header ("Location: homepage.php");
 				// echo "<script>window.top.location='homepage.php'</script>";

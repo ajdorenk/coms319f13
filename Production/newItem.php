@@ -1,15 +1,46 @@
+<!DOCTYPE html>
+
+<?PHP
+	session_start();
+?>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Untitled Document</title>
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<link href="newItem_style.css" rel="stylesheet" type="text/css">
-<link href="style.css" rel="stylesheet" type="text/css">
+<script src="../bootstrap/bootstrap.min.js"></script>
+<script src="../bootstrap/carousel.js"></script>
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/carousel.css">
+<link rel="stylesheet" href="myaccount_files/myaccount.css">
+<script src="myaccount_files/sellerfunctions.js"></script>
+<!-- <script src="myaccount_files/jquery_ui/jquery-1.9.1.js"></script> -->
+<link rel="stylesheet" href="myaccount_files/jquery_ui/jquery-ui.css">
+<script src="myaccount_files/jquery_ui/jquery-ui.js"></script>
+
+<style type="text/css">
+      body {
+    padding-top: 70px;
+        padding-bottom: 40px;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    .container {
+    max-width : 100%;
+    }
+    
+    .jumbotron {
+    background-color: "blue";
+    }
+</style>
 </head>
 
-<body>
 
 <script type = "text/JavaScript">
 
@@ -48,6 +79,7 @@
 					type: "POST",
 					url: "insertNewItem.php",
 					data: {
+								Email : "<?php echo $_SESSION['Email']; ?>",
 								name : title,
 								price : price,
 								description : description,
@@ -116,20 +148,58 @@
 	}
 </script>
 
-<div class="container">
-  <div class="header"><a href="#"><img src="" alt="Insert Logo Here" name="Insert_logo" width="20%" height="90" id="Insert_logo" style="background-color: #8090AB; display:block;" /></a> 
-    <!-- end .header --></div>
-  <div class="sidebar1">
-    <ul class="nav">
+<body id='body'>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="">TextbookTrader</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
       <li><a href="index.php">Home</a></li>
-      <li><a href="results.php">Search</a></li>
-      <li><a href="myaccount.php">Seller Page</a></li>
       <li><a href="#">About Us</a></li>
+    <li><a href="#">Contact Us</a></li>
     </ul>
-    <p> The above links demonstrate a basic navigational structure using an unordered list styled with CSS. Use this as a starting point and modify the properties to produce your own unique look. If you require flyout menus, create your own using a Spry menu, a menu widget from Adobe's Exchange or a variety of other javascript or CSS solutions.</p>
-    <p>If you would like the navigation along the top, simply move the ul.nav to the top of the page and recreate the styling.</p>
-    <!-- end .sidebar1 --></div>
-  <div class="content">
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#">Log In</a></li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+
+<div class="container">
+
+  <div class="row">
+  <div class="col-md-2">
+    <div class="well sidebar-nav">
+      <ul class="nav nav-list">
+        <li class="nav-header">Navigation</li>
+        <li class="active"><a href="results.php">Buy</a></li>
+<?php
+	if(isset($_SESSION['login']) && $_SESSION['login'] == "1") {
+        echo "<li><a href='myaccount.php'>Sell</a></li>";
+	}
+?>
+        <li><a href="#"></a></li>
+      </ul>
+    </div>
+  </div>
+  
+
+	
+	
+
+	
+	<div class="col-md-10"  id="posthere">
+<div class="content">
 	<h2>New Item:</h2>
 	<form>
 		What are you posting?: 
@@ -229,13 +299,16 @@
 	</table>
 	<br>
 	<br>
-	<button id="canel_item" type="button" style="float:right">Cancel</button>
-	<button id="submit_item" type="submit" style="float:right" onclick="submitForm()">Submit</button>
+	<a href='myaccount.php'><button id="canel_item" type="button" style="float:right">Cancel</button></a>
+	<a href='myaccount.php'><button id="submit_item" type="submit" style="float:right" onclick="submitForm()">Submit</button></a>
 	
   <!-- end .content --></div>
+	
+	
+	
+	</div>
   <div class="footer">
-    <p>This .footer contains the declaration position:relative; to give Internet Explorer 6 hasLayout for the .footer and cause it to clear correctly. If you're not required to support IE6, you may remove it.</p>
     <!-- end .footer --></div>
-  <!-- end .container --></div>
+  <!-- end .container -->
 </body>
 </html>

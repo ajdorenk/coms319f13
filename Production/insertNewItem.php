@@ -1,5 +1,4 @@
 <?php
-	
 	$title = $_POST["title"];
 	$name = $_POST["name"];
 	$author = $_POST["author"];
@@ -11,7 +10,7 @@
 	$negotiate = $_POST["negotiate"];
 	$type = $_POST["book"];
 	//$email = "me@iastate.edu";
-	$email = $_Session['Email'];
+	$email = $_POST['Email'];
 	
 	$conn=mysqli_connect("mysql.cs.iastate.edu","u31904","QWGCG6sfQ","db31904"); 
 	
