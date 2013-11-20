@@ -1,20 +1,23 @@
 
-#items {
-	border:2px solid black;
-	width:85%;
-	height:15em;
+div[name='information'] {
+	width:75%;
 	margin:auto;
-	background-color:white;
-	border-radius:.5em;
+}
+
+
+#items {
+
+	width:85%;
+	height:21em;
+	margin:auto;
+
 }
 
 #picture {
 	/*border:2px solid black;*/
 	width:25%;
-	height:12em;
-	position:relative;
-	float:left;
-	align:left;
+	height:18em;
+
 }
 
 .info {
@@ -43,20 +46,14 @@
 
 #pictureimg {
 	/*position:absolute;*/
-	margin-left:8%;
-	height:100%;
+	height:18em;
 }
 
 #userinfo {
 	/*width:50%;*/
 	height:100%;
-	border:2px solid black;
+	/*border:2px solid black;*/
 	background-color:white;
 	border-radius:0.5em;
 }
 
-#centerdiv {
-	margin-left:5%;
-	margin-right:5%;
-	margin-top:3%;
-}
