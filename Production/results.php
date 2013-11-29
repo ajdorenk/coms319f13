@@ -48,8 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
       $SQL = "SELECT * FROM Item i, Book b WHERE i.ID = b.BookID AND b.Title LIKE '%{$text}%' AND i.Sold = false";
     } else if($_POST['searchType'] == "isbn") {
       $SQL = "SELECT * FROM Item i, Book b WHERE i.ID = b.BookID AND b.ISBN LIKE '%{$text}%' AND i.Sold = false";
-    } else {
+    } else if($_POST['searchType'] == "anything") {
       $SQL = "SELECT * FROM Item i, Book b WHERE i.ID = b.BookID AND i.Sold = false";
+    } else {
+      $SQL = "SELECT * FROM Item i, Book b WHERE i.ID = b.BookID AND b.Title LIKE '%{$text}%' AND i.Sold = false";
     }
     $result = mysql_query($SQL);
 
@@ -284,14 +286,37 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
       <li><a href="index.php">Home</a></li>
-      <li><a href="#">About Us</a></li>
-    <li><a href="#">Contact Us</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">Log In</a></li>
+<?PHP
+  if (($_SESSION['login'] == '0') || !(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
+    echo "<li><a href='loginpage.php'>Log In</a></li>";
+    // echo "<script>window.top.location='index.php'</script>";
+  }
+  else {
+    echo "<li><a href='results.php' id='logout'>Log Out</a></li>";
+  }
+?>
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
+
+<script type="text/JavaScript">
+  $('#logout').click(function() {
+    var str_json;
+    // alert("functioncalled")
+    $.ajax({
+        data: str_json,
+        url: 'logout.php',
+        method: 'POST', // or GET
+        success: function(data) {
+          // alert(data);
+          // alert("logged out");
+          // window.top.location='results.php';
+        }
+    });
+  });
+</script>
 
 <div class="container">
 
@@ -300,13 +325,14 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
     <div class="well sidebar-nav">
       <ul class="nav nav-list">
         <li class="nav-header">Navigation</li>
-        <li class="active"><a href="#">Buy</a></li>
+        <li class="active"><a href="results.php">Buy</a></li>
 <?php
   if(isset($_SESSION['login']) && $_SESSION['login'] == "1") {
         echo "<li><a href='myaccount.php'>Sell</a></li>";
   }
 ?>
-        <li><a href="#"></a></li>
+        <li><a href="aboutus.php">About Us</a></li>
+        <li><a href="contactus.php">Contact Us</a></li>
       </ul>
     </div>
   </div>
@@ -341,7 +367,8 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
         <input type="submit" name="searchNow" value="Go">
       </form>
     </div>
-    <div class="resultsPaneArr" style="overflow:scroll; height:400px;">
+    <!-- <div class="resultsPaneArr" style="overflow:scroll; height:600px;"> -->
+    <div class="resultsPaneArr" style="overflow:scroll; height:90%;">
       <script type='text/javascript'>
         // $('.resultsPaneArr').append(resultsPaneGenerator());
         $('.resultsPaneArr').append(resultsTableGenerator());

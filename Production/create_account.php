@@ -177,11 +177,9 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
       <li><a href="index.php">Home</a></li>
-      <li><a href="#">About Us</a></li>
-    <li><a href="#">Contact Us</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">Log In</a></li>
+<!--       <li><a href="loginpage.php">Log In</a></li> -->
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
@@ -193,9 +191,9 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
     <div class="well sidebar-nav">
       <ul class="nav nav-list">
         <li class="nav-header">Navigation</li>
-        <li class="active"><a href="#">Buy</a></li>
-        <li><a href="#">Sell</a></li>
-        <li><a href="#"></a></li>
+        <li class="active"><a href="results.php">Buy</a></li>
+	    <li><a href="aboutus.php">About Us</a></li>
+	    <li><a href="contactus.php">Contact Us</a></li>
       </ul>
     </div>
   </div>

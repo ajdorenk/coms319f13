@@ -175,43 +175,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
       <li><a href="index.php">Home</a></li>
-<!--       <li><a href=''>
-				<form method='post' action='results.php'>
-					<input type="text" name="searchText" placeholder="Quick Search...">
-					<input type="submit" name="searchNow" value="Search">
-				</form>
-	  </a><li>	 -->
     </ul>
     <ul class="nav navbar-nav navbar-right">
-<?PHP
-	if (($_SESSION['login'] == '0') || !(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
-		echo "<li><a href='loginpage.php'>Log In</a></li>";
-		// echo "<script>window.top.location='index.php'</script>";
-	}
-	else {
-		echo "<li><a href='' id='logout'>Log Out</a></li>";
-	}
-?>
-    </ul>
+<!--       <li>Log In</a></li>
+ -->    </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
-
-<script type="text/JavaScript">
-	$('#logout').click(function() {
-		var str_json;
-		// alert("functioncalled")
-		$.ajax({
-		    data: str_json,
-		    url: 'logout.php',
-		    method: 'POST', // or GET
-		    success: function(data) {
-		    	// alert(data);
-		    	// alert("logged out");
-    			// window.top.location='results.php';
-	    	}
-		});
-	});
-</script>
 
 <div class="container">
 
@@ -226,7 +195,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         echo "<li><a href='myaccount.php'>Sell</a></li>";
 	}
 ?>
-      	<li><a href="aboutus.php">About Us</a></li>
+        <li><a href="aboutus.php">About Us</a></li>
     	<li><a href="contactus.php">Contact Us</a></li>
       </ul>
     </div>
@@ -249,32 +218,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
   ?>
 
   <div class="content">
-<!-- 		<div class="tabs">
-			<button id="buyer" onclick="tabFunction(this.id)">Quick Search</button>
-			<button id="seller" onclick="tabFunction(this.id)">Seller Login</button>
-		</div> -->
 		
-		<div id="buyer_tab">
-			<h2>Welcome to TextbookTrader!</h2>
-			<br>
-			<p>Looking for a quick and easy way to buy and sell your school supplies?</p>
-			<p>Look no further! TextbookTrader was specifically created for Iowa State 
-			students to buy and sell their school supplies. With a clean, simple layout, TextbookTrader 
-			was designed from the ground up to be quick and easy to use.</p>
-			<h2>Quick Search</h2>
-			<br>
-			<div class="form">
-				<form method='post' action='results.php'>
-					<input type="text" name="searchText" placeholder="Search...">
-					<input type="submit" name="searchNow" value="Search">
-				</form>
-			</div>
-			<div class="image">
-				<img src="textbooks.jpg" alt="textbooks">
-			</div>
-		</div>
-		
-		<!-- <div id="seller_tab" style="display: none">
+		<div id="seller_tab">
 			<h2>Login</h2>
 			<br>
 			<table id="form_table" class="form">
@@ -297,7 +242,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 					</form>
 				</tr>
 			</table>
-			<div class="form">
+			<!--<div class="form">
 				<Label>Username: </Label>
 				<input id="username" type="text" width="250px">
 			</div>
@@ -310,8 +255,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			<div class="buttons">
 				<button id="login" type="submit" onclick="">Go!</button>
 				<button id="new_user" type="submit" onclick="">Create an account</button>
-			</div>
-		</div>  -->
+			</div>-->
+		</div> 
    <!-- end .content --></div>
   <div class="footer">
     <!-- end .footer --></div>
