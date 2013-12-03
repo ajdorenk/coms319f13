@@ -218,96 +218,106 @@
 	</form>
 	<br>
 	
-	<table id="book_table" class="form" style="display: none">
-		<tr class="spaceUnder">
-			<td>Title: </td>
-			<td><input type="text" id="title"></td>
-		</tr>
-		<tr class="spaceUnder">
-			<td>Author: </td>
-			<td><input type="text" id="author"></td>
-		</tr>
-		<tr class="spaceUnder">
-			<td>ISBN: </td>
-			<td><input type="text" id="isbn" onchange="getAmazonData()"></td>
-			<td><input type="checkbox" id="enable">Enable ISBN auto-fill.</td>
-		</tr>
-		<tr class="spaceUnder">
-			<td>Description: </td>
-			<td><input type="text" id="description"></td>
-		</tr>
-		<tr class="spaceUnder">
-			<td>Condition:</td>
-			<td>
-				<select id="condition">
+	<form id="book_table" role="form" class="form-horizontal" style="display: none">
+	<div class="form-group">
+		<label for="title" class="col-sm-2 control-label">Title</label>
+		<div class="col-sm-10">
+		  <input type="text" id="title">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="author" class="col-sm-2 control-label">Author</label>
+		<div class="col-sm-10">
+		  <input type="text" id="author">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="isbn" class="col-sm-2 control-label">ISBN</label>
+		<div class="col-sm-10">
+		  <input type="text" id="isbn" onchange="getAmazonData()">
+		  <input type="checkbox" id="enable"> Enable ISBN auto-fill.
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="description" class="col-sm-2 control-label">Description</label>
+		<div class="col-sm-10">
+		  <input type="text" id="description">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="condition" class="col-sm-2 control-label">Condition</label>
+		<div class="col-sm-10">
+		  <select id="condition">
 					<option value=null></option>
 					<option value="poor">Poor</option>
 					<option value="acceptable">Acceptable</option>
 					<option value="newish">Like New</option>
 					<option value="new">New</option>
-				</select>
-			</td>
-		</tr>
-		<tr  class="spaceUnder">
-			<td>Price: </td>
-			<td><input type="text" id="price"></td>
-		</tr>
-		<tr class="spaceUnder">
-			<td align="right"><input type="checkbox" id="negotiations"></td>
-			<td>Allow negotiations?</td>
-		</tr>
-		<tr class="spaceUnder">
-			<td><label for="img_file">Image:</label></td>
-			<td><img src="placeholder.jpg" height="125px" width="120px" id="image"></td>
-			<td align="top">
-				<input type="text" id="img_file">
-				<button type="button">Browse Computer</button>
-			</td>
-		</tr>
-	</table>
+		  </select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="price" class="col-sm-2 control-label">Price</label>
+		<div class="col-sm-10">
+		  <input type="text" id="price">
+		  <input type="checkbox" id="negotiations"> Accept negotiations?
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="img_file" class="col-sm-2 control-label">Image</label>
+		<div class="col-sm-10">
+		  <img src="placeholder.jpg" height="125px" width="120px" id="image">
+		  <input type="text" id="img_file">
+		  <button type="button">Browse Computer</button>
+		</div>
+	</div>
+	<a href='myaccount.php'><button class="btn btn-primary" id="canel_item" type="button">Cancel</button></a>
+	<a href='myaccount.php'><button class="btn btn-primary" id="submit_item" type="submit" onclick="submitForm()">Submit</button></a>
+	</form>
 	
-	<table id="other_table" class="form" style="display: none">
-		<tr class="spaceUnder">
-			<td>Name: </td>
-			<td><input type="text" id="name"></td>
-		</tr>
-		<tr class="spaceUnder">
-			<td>Description: </td>
-			<td><input type="text" id="description"></td>
-		</tr>
-		<tr class="spaceUnder">
-			<td>Condition:</td>
-			<td>
-				<select id="condition">
+	<form id="other_table" role="form" class="form-horizontal" style="display: none">
+	<div class="form-group">
+		<label for="name" class="col-sm-2 control-label">Name</label>
+		<div class="col-sm-10">
+		  <input type="text" id="name">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="description" class="col-sm-2 control-label">Description</label>
+		<div class="col-sm-10">
+		  <input type="text" id="description">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="condition" class="col-sm-2 control-label">Condition</label>
+		<div class="col-sm-10">
+		  <select id="condition">
 					<option value=null></option>
 					<option value="poor">Poor</option>
 					<option value="acceptable">Acceptable</option>
 					<option value="newish">Like New</option>
 					<option value="new">New</option>
-				</select>
-			</td>
-		</tr>
-		<tr  class="spaceUnder">
-			<td>Price: </td>
-			<td><input type="text" id="price"></td>
-		</tr>
-		<tr class="spaceUnder">
-			<td align="right"><input type="checkbox" id="negotiations"></td>
-			<td>Allow negotiations?</td>
-		</tr>
-		<tr class="spaceUnder">
-			<td><label for="img_file">Image:</label></td>
-			<td><img src="placeholder.jpg" height="125px" width="120px" id="image"></td>
-			<td align="top">
-				<input type="text" id="img_file">
-				<button type="button">Browse Computer</button>
-			</td>
-		</tr>
-	</table>
-	<br>
-	<br>
-	<a href='myaccount.php'><button id="canel_item" type="button" style="float:right">Cancel</button></a>
-	<a href='myaccount.php'><button id="submit_item" type="submit" style="float:right" onclick="submitForm()">Submit</button></a>
+		  </select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="price" class="col-sm-2 control-label">Price</label>
+		<div class="col-sm-10">
+		  <input type="text" id="price">
+		  <input type="checkbox" id="negotiations"> Accept negotiations?
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="img_file" class="col-sm-2 control-label">Image</label>
+		<div class="col-sm-10">
+		  <img src="placeholder.jpg" height="125px" width="120px" id="image">
+		  <input type="text" id="img_file">
+		  <button type="button">Browse Computer</button>
+		</div>
+	</div>
+	<a href='myaccount.php'><button class="btn btn-primary" id="canel_item" type="button">Cancel</button></a>
+	<a href='myaccount.php'><button class="btn btn-primary" id="submit_item" type="submit" onclick="submitForm()">Submit</button></a>
+	</form>	
 	
   <!-- end .content --></div>
 	

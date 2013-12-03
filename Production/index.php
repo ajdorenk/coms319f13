@@ -263,9 +263,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			was designed from the ground up to be quick and easy to use.</p>
 			<h2>Quick Search</h2>
 			<br>
-			<div class="form">
+			<div>
 				<form method='post' action='results.php'>
-					<input type="text" name="searchText" placeholder="Search...">
+					<input type="text" name="searchText" placeholder="Search..." style="width: 250">
 					<input type="submit" name="searchNow" value="Search">
 				</form>
 			</div>
