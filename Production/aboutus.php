@@ -98,8 +98,21 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
   <div class="col-md-10">
 
   <div class="content">
+    <h2>About the Site</h2>
+    <p>TextbookTrader is Iowa State's first and only dedicated site for buying and selling school supplies. 
+    Created in Fall 2013, TextbookTrader was born out of a vision of making it easier for students to buy and sell their textbooks each semester.
+    Buying from the Iowa State Bookstore costs you more than it should, while buying online leaves uncertaintly as to the quality of your purchase.
+    With TextbookTrader, you can now buy and sell locally, always at a fair price and consistantly sure of the quality of what you are purchasing. </p>
+    <h2>About the Team</h2>
+    <p>TextbookTrader was created by the following students:</p>
     <h4>Austin Dorenkamp</h4>
-    <p>Austin is a junior in Computer Engineering at Iowa State University</p>
+    <p>Austin is a junior in Computer Engineering at Iowa State University and is concurrently pursuing a minor in Entrepreneurial Studies.</p>
+    <h4>Bryan Passini</h4>
+    <p>Bryan is a junior in Software Engineering at Iowa State University and doesn't do much.</p>
+    <h4>Erich Kuerschner</h4>
+    <p>Erich is a junior in Computer Engineering at Iowa State University and enjoys taking long walks on the beach.</p>
+    <h4>Taylor Greiner</h4>
+    <p>Taylor is a junior in Software Engineering at Iowa State University and is currently the Vice President of the Sales Engineering Club.</p>
     <!-- end .content --></div>
   <!-- end .container --></div>
 </body>

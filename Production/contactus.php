@@ -5,6 +5,25 @@ session_start();
  
 <html>
 <head>
+<style>
+  #map_canvas {
+        width: 500px;
+        height: 400px;
+  }
+</style>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script>
+      function initialize() {
+        var map_canvas = document.getElementById('map_canvas');
+        var map_options = {
+          center: new google.maps.LatLng(4.597948, -74.075114),
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(map_canvas, map_options)
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+</script>
 <meta charset="UTF-8">
 <title>Contact Us</title>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -99,10 +118,12 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 
   <div class="content">
     <h4>Contact Information</h4>
-    <p>Pearson Hall</p>
-    <p>Ames, IA 50011</p>
-    <p>123-456-7890</p>
-    <p>comsci@iastate.edu</p>
+    <p>Textbooko Tradero</p>
+    <p>Calle 11</p>
+    <p>Bogotá, Bogotá, D.C., Colombia</p>
+    <p>+57 2826647</p>
+    <p>isutextbooktrader@gmail.com</p>
+    <div id="map_canvas"></div>
     <!-- end .content --></div>
   <!-- end .container --></div>
 </body>
