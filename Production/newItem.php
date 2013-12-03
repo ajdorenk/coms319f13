@@ -159,18 +159,24 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="">TextbookTrader</a>
+    <a class="navbar-brand" href="index.php">TextbookTrader</a>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-      <li><a href="index.php">Home</a></li>
-      <li><a href="#">About Us</a></li>
-    <li><a href="#">Contact Us</a></li>
+      <!-- <li><a href="index.php">Home</a></li> -->
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">Log In</a></li>
+<?PHP
+  if (($_SESSION['login'] == '0') || !(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
+    echo "<li><a href='loginpage.php'>Log In</a></li>";
+    // echo "<script>window.top.location='index.php'</script>";
+  }
+  else {
+    echo "<li><a href='myaccount.php' id='logout'>Log Out</a></li>";
+  }
+?>
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
@@ -188,10 +194,11 @@
         echo "<li><a href='myaccount.php'>Sell</a></li>";
 	}
 ?>
-        <li><a href="#"></a></li>
-      </ul>
-    </div>
-  </div>
+    <li><a href="aboutus.php">About Us</a></li>
+    <li><a href="contactus.php">Contact Us</a></li>
+		</ul>
+	</div>
+	</div>
   
 
 	

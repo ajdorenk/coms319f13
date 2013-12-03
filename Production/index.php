@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Homepage</title>
+<title>TextbookTrader</title>
 <!-- <link href="style.css" rel="stylesheet" type="text/css"> -->
 <link href="homepage_style.css" rel="stylesheet" type="text/css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -168,13 +168,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="">TextbookTrader</a>
+    <a class="navbar-brand" href="index.php">TextbookTrader</a>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-      <li><a href="index.php">Home</a></li>
+<!--       <li><a href="index.php">Home</a></li> -->
 <!--       <li><a href=''>
 				<form method='post' action='results.php'>
 					<input type="text" name="searchText" placeholder="Quick Search...">
