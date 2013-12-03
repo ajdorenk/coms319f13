@@ -148,7 +148,7 @@ function getUser(email)
 	}).done( function( data ) {
 		var user = $.parseJSON(data);
 				$.each(user,  function() {
-					toRet = printInfo("" + this["FName"] + this["LName"], this["Email"], this["Phone"], this["DCreated"], this["BooksForSale"], this["BooksSold"], rating);
+					toRet = printInfo("" + this["FName"] + " " + this["LName"], this["Email"], this["Phone"], this["DCreated"], this["BooksForSale"], this["BooksSold"], rating);
 				});
 	});
 	return toRet;
@@ -157,7 +157,7 @@ function getUser(email)
 var edit = 0;
 function editFunc()
 {
-	var name;
+	var name; var tcall;
 	$('#usertable th button').each( function() {
 		var ID = $(this).attr('id');
 		if( ID == 'edituser')
@@ -171,12 +171,15 @@ function editFunc()
 			{
 				$(this).html('Edit');
 				edit = 0;
+				tcall = true;
 			}
 		}
 	});
 	
 	var info = new Array();
-	
+	var tphone;
+	var tname = "";
+	var temail;
 	$('#usertable td').each( function() {
 		var ID = $(this).attr('id');
 		if( ID == 'nameuser' && edit == 1)
@@ -189,9 +192,9 @@ function editFunc()
 			var temp;
 			$('#usertable td textarea').each( function() {
 				if($(this).attr('id') == 'nametext')
-					temp = $(this).val();
+					tname = $(this).val();
 			});
-			$(this).html(temp);
+			$(this).html(tname);
 		}
 		else if( ID == 'emailuser' && edit == 1)
 		{
@@ -203,9 +206,9 @@ function editFunc()
 			var temp;
 			$('#usertable td textarea').each( function() {
 				if($(this).attr('id') == 'emailtext')
-					temp = $(this).val();
+					temail = $(this).val();
 			});
-			$(this).html(temp);
+			$(this).html(temail);
 		}
 		else if( ID == 'phoneuser' && edit == 1)
 		{
@@ -217,11 +220,38 @@ function editFunc()
 			var temp;
 			$('#usertable td textarea').each( function() {
 				if($(this).attr('id') == 'phonetext')
-					temp = $(this).val();
+					tphone = $(this).val();
 			});
-			$(this).html(temp);
+			$(this).html(tphone);
 		}
 	});
+	
+	if(tcall){
+		updateUser(temail, tname, tphone);
+	}
+}
+
+function updateUser(email, name, phone) {
+	var namearr = name.split(" ");
+	var first = namearr[0];
+	var last = namearr[1];
+	$.ajax({
+	type: "POST",
+	url: "myaccount_files/php_scripts/my_account_updateuser.php",
+	data: {
+				OldEmail : mEmail,
+				NewEmail : email,
+				Phone : phone,
+				FName : first,
+				LName : last
+			},
+	async: false
+	});/*.done( function( data ) {
+		var user = $.parseJSON(data);
+				$.each(user,  function() {
+					toRet = printInfo("" + this["FName"] + this["LName"], this["Email"], this["Phone"], this["DCreated"], this["BooksForSale"], this["BooksSold"], rating);
+				});
+	});*/
 }
 
 function updateBook(title, author, isbn, condition, price, id)
