@@ -113,6 +113,13 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
     <p>Erich is a junior in Computer Engineering at Iowa State University and enjoys taking long walks on the beach.</p>
     <h4>Taylor Greiner</h4>
     <p>Taylor is a junior in Software Engineering at Iowa State University and is currently the Vice President of the Sales Engineering Club.</p>
+    <div class="image">
+<!--       <img src="teampic.jpg" alt="Erich, Taylor, Bryan, Austin (Left to Right)" height="500">
+ -->    
+      <img src="teamerich.png" alt="Erich, Taylor, Bryan, Austin (Left to Right)" height="500">
+
+    </div>
+    <p>Left to Right: Erich, Taylor, Bryan, Austin</p>
     <!-- end .content --></div>
   <!-- end .container --></div>
 </body>
