@@ -279,7 +279,7 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="index.php">TextbookTrader</a>
+    <a class="navbar-brand" href="index.php"><strong>TextbookTrader</strong></a>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
