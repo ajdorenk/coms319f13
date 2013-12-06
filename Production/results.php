@@ -421,9 +421,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     </div>
 	
 	<div id="linkDiv" style="display:none">
-		Sorry, we could not find the item you are searching for.  We suggest using Amazon.com to find the item:
-    <a href="<?php echo $fullLink; ?>"> <?php echo $fullLink; ?> </a>
+		Sorry, we could not find the item you are searching for.  
     <br/>
+    We suggest using Amazon.com to find the item:
+    <br>
+    <a href="<?php echo $fullLink; ?>"> <?php echo $fullLink; ?> </a>
 	</div>
     <!-- end .content --></div>
   <!-- end .container --></div>
