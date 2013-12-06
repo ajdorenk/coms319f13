@@ -116,7 +116,7 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
     <div class="image">
 <!--       <img src="teampic.jpg" alt="Erich, Taylor, Bryan, Austin (Left to Right)" height="500">
  -->    
-      <img src="teamerich.png" alt="Erich, Taylor, Bryan, Austin (Left to Right)" height="500">
+      <img src="teampic.jpg" alt="Erich, Taylor, Bryan, Austin (Left to Right)" height="500">
 
     </div>
     <p>Left to Right: Erich, Taylor, Bryan, Austin</p>
