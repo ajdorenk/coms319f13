@@ -4,6 +4,11 @@ session_start();
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script>  var $itemAllArr = new Array(); </script>
 <?php
+include("AmazonECS.class.php");
+
+const AWS_API_KEY = "AKIAIHKWE2IOUHGASMMQ";
+const AWS_API_SECRET_KEY = "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";
+const AWS_ASSOCIATE_TAG = "textbtrade-20";
   //==========================================
 //  ESCAPE DANGEROUS SQL CHARACTERS
 //==========================================
@@ -79,6 +84,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
       echo "</script>";
       $counter++;
     }
+	
+	if($counter == 0){
+		$client = new AmazonECS(AWS_API_KEY, AWS_API_SECRET_KEY, 'com', AWS_ASSOCIATE_TAG);
+		$response = $client->category('Books')->responseGroup('ItemAttributes')->search($text);
+		$asin = $response->Items->Item->ASIN;
+		$link = 'http://www.amazon.com/exec/obidos/ASIN/';
+		echo "<script type=\"text/javascript\">
+				$(document).ready(function() {
+					document.getElementById(\"linkDiv\").style = \"display: inline\";
+					document.getElementById(\"linkDiv\").innerHTML += " + $link+$asin + ";})" +					
+			  "</script>";
+	}
+	else{
+		echo "<script type=\"text/javascript\">
+				$(document).ready(function() {
+					document.getElementById(\"linkDiv\").style = display: none\";
+					document.getElementById(\"linkDiv\").innerHTML = \"\";})
+			  </script>";
+	}
 
     // $num_rows = mysql_num_rows($result);
     // $resultArr = mysql_fetch_array($result);
@@ -375,6 +399,11 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
       </script>
 
     </div>
+	
+	<div id="linkDiv" style="display:none">
+		Sorry, we could not find the item you are searching for.  We suggest using Amazon.com to find the item:
+		<br/>
+	</div>
     <!-- end .content --></div>
   <!-- end .container --></div>
 </body>
