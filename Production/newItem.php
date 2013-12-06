@@ -268,7 +268,6 @@
 		<div class="col-sm-10">
 		  <img src="placeholder.jpg" height="125px" width="120px" id="image">
 		  <input type="text" id="img_file">
-		  <button type="button">Browse Computer</button>
 		</div>
 	</div>
 	<a href='myaccount.php'><button class="btn btn-primary" id="canel_item" type="button">Cancel</button></a>
@@ -312,7 +311,6 @@
 		<div class="col-sm-10">
 		  <img src="placeholder.jpg" height="125px" width="120px" id="image">
 		  <input type="text" id="img_file">
-		  <button type="button">Browse Computer</button>
 		</div>
 	</div>
 	<a href='myaccount.php'><button class="btn btn-primary" id="canel_item" type="button">Cancel</button></a>
