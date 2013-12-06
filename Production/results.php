@@ -1,3 +1,21 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Search Results</title>
+<link href="resultsStyle.css" rel="stylesheet" type="test/css">
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="../bootstrap/bootstrap.min.js"></script>
+<script src="../bootstrap/carousel.js"></script>
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/carousel.css">
+<!-- <link href="style.css" rel="stylesheet" type="text/css"> --><!--[if lte IE 7]>
+<style>
+.content { margin-right: -1px; } /* this 1px negative margin can be placed on any of the columns in this layout with the same corrective effect. */
+ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it needs to correct extra whiltespace between the links */
+</style>
+<![endif]-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
 <?php
 session_start();
 ?>
@@ -23,6 +41,8 @@ function quote_smart($value, $handle) {
    }
    return $value;
 }
+
+$fullLink = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
@@ -84,25 +104,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
       echo "</script>";
       $counter++;
     }
+
+	// echo "<script type=\"text/javascript\">"
+ //        ."$(document).ready(function() {"
+ //        ."alert(".$counter.");})"         
+ //        ."</script>";
 	
-	if($counter == 0){
+  if($counter == 0){
 		$client = new AmazonECS(AWS_API_KEY, AWS_API_SECRET_KEY, 'com', AWS_ASSOCIATE_TAG);
 		$response = $client->category('Books')->responseGroup('ItemAttributes')->search($text);
 		$asin = $response->Items->Item->ASIN;
 		$link = 'http://www.amazon.com/exec/obidos/ASIN/';
-		echo "<script type=\"text/javascript\">
-				$(document).ready(function() {
-					document.getElementById(\"linkDiv\").style = \"display: inline\";
-					document.getElementById(\"linkDiv\").innerHTML += " + $link+$asin + ";})" +					
-			  "</script>";
+    $fullLink = $link.$asin;
+    // echo "<script type=\"text/javascript\">"
+    //     ."$(document).ready(function() {"
+    //     ."alert(\"".$link.$asin."\");})"       
+    //     ."</script>";
+    // echo "<script type=\"text/javascript\">"
+    //     ."$(document).ready(function() {"
+    //     ."document.getElementById(\"linkDiv\").style.display = \"inline\";"
+    //     ."document.getElementById(\"linkDiv\").innerHTML += ".$link.$asin.";})"         
+    //     ."</script>";
+    echo "<script type=\"text/javascript\">"
+        ."$(document).ready(function() {"
+        ."$('#linkDiv').show();"
+        ."$('.resultsPaneArr').hide();"
+        ."})"         
+        ."</script>";
 	}
-	else{
-		echo "<script type=\"text/javascript\">
-				$(document).ready(function() {
-					document.getElementById(\"linkDiv\").style = display: none\";
-					document.getElementById(\"linkDiv\").innerHTML = \"\";})
-			  </script>";
-	}
+	// else{
+	// 	echo "<script type=\"text/javascript\">"
+	// 			."$(document).ready(function() {"
+	// 			."document.getElementById(\"linkDiv\").style.display = \"none\";"
+	// 			."document.getElementById(\"linkDiv\").innerHTML = \"\";})"
+	// 		  ."</script>";
+	// }
 
     // $num_rows = mysql_num_rows($result);
     // $resultArr = mysql_fetch_array($result);
@@ -177,7 +213,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
       var $ttTitle = "";
 
       $returnStr += "<table class='table table-striped'>";
-      $returnStr += "<thead><tr><th>#</th><th>Item Name</th><th>Description</th>";
+      $returnStr += "<thead><tr><th>Image</th><th>Item Name</th><th>Description</th>";
       $returnStr += "<th>Price</th></tr></thead>";
 
       for(var $i = 0; $i<$itemAllArr.length; $i++) {
@@ -190,7 +226,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         //   $ttTitle = ($itemAllArr[$i]['itemName']);
         // }
 
-        $returnStr += "<tr><td><img src='" + $itemAllArr[$i]['imageLink'] + "' alt='No Image Available'</td>";
+        $returnStr += "<tr><td><img src='" + $itemAllArr[$i]['imageLink'] + "' alt='No Image Available' width=\"250\"></td>";
         $returnStr += "<td>" + $itemAllArr[$i]['itemName'] + "</td>";
         $returnStr += "<td>" + $itemAllArr[$i]['itemDescripShort'] + "</td>";
         $returnStr += "<td>$" + $itemAllArr[$i]['itemPrice'] + "</td>";
@@ -250,23 +286,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     } 
  </script>  
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Search Results</title>
-<link href="resultsStyle.css" rel="stylesheet" type="test/css">
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<script src="../bootstrap/bootstrap.min.js"></script>
-<script src="../bootstrap/carousel.js"></script>
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/carousel.css">
-<!-- <link href="style.css" rel="stylesheet" type="text/css"> --><!--[if lte IE 7]>
-<style>
-.content { margin-right: -1px; } /* this 1px negative margin can be placed on any of the columns in this layout with the same corrective effect. */
-ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it needs to correct extra whiltespace between the links */
-</style>
-<![endif]-->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
 <!-- <script language="JavaScript" type="text/javascript" src="resultsScript.js"></script> -->
 <style type="text/css">
       body {
@@ -402,7 +422,8 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 	
 	<div id="linkDiv" style="display:none">
 		Sorry, we could not find the item you are searching for.  We suggest using Amazon.com to find the item:
-		<br/>
+    <a href="<?php echo $fullLink; ?>"> <?php echo $fullLink; ?> </a>
+    <br/>
 	</div>
     <!-- end .content --></div>
   <!-- end .container --></div>
