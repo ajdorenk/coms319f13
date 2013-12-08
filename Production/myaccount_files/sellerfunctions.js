@@ -1,19 +1,21 @@
 var num = 0;
 var mEmail = "";
 var arrIds = new Array();
-function printBook(src, title, author, isbn, condition, asking, description)
+var booksArr = new Array();
+function printBook(src, title, author, isbn, condition, asking, description, sold)
 {
+	
 	var id = "edititem" + num;
 	var toReturn = "<table id='tabd" + id + "' class='table table-bordered'><tr><td align='center' class='col-md-3' style='vertical-align:middle'>" + 
 					"<img id='pictureimg' src=" + src + ">" +
 					"</td><td align='center' style='vertical-align:middle'><table style='margin:auto;' id='info" + id + "' class='table table-bordered'><col width='25%'><col width='75%'>" + 
-					"<thead><tr><th colspan='2'>Item Informaton <button type='button'class='btn btn-default btn-xs' id=" + id + " onClick='itemEdit(this.id)'>Edit</button></th></tr></thead>" + 
+					"<thead><tr><th id='thid' colspan='2'>Item Informaton"+ (sold==0 ? " <button type='button'class='btn btn-default btn-xs' id=" + id + " onClick='itemEdit(this.id)'>Edit</button> <button type='button'class='btn btn-default btn-xs' id=bbt" + id + " onClick='soldItem(this.id)' disabled style='visibility:hidden'>Sold Item</button>" : " SOLD") + "</th></tr></thead>" + 
 					"<tbody><tr><td style='vertical-align:middle' height='45'><strong>Title</strong></td> <td style='vertical-align:middle' height='45'><span>" + title +"</span></td></tr>" +
 					"<tr><td style='vertical-align:middle' height='45'><strong>Author</strong></td><td style='vertical-align:middle' height='45'><span>" + author + "</span></td></tr>" +
 					"<tr><td style='vertical-align:middle' height='45'><strong>ISBN</strong></td><td style='vertical-align:middle' height='45'><span>" + isbn + "</span></td></tr>" +
 					"<tr><td style='vertical-align:middle' height='45'><strong>Item Condition</strong></td><td style='vertical-align:middle' height='45'><span>" + condition + "</span></td></tr>" +
-					"<tr><td style='vertical-align:middle' height='45'><strong>Asking Price</strong></td><td style='vertical-align:middle' height='45'><span>" + asking + "</span></td></tr></tbody></table><br>" + 
-					"</td></tr><tr><td colspan='2'><h4>Description  <button type='button' class='btn btn-default btn-xs' id='d" + id + "' onClick='descriptEdit(this.id)'>Edit</button></h4>" + 
+					"<tr><td style='vertical-align:middle' height='45'><strong><div id='s" + id +"'>" + (sold==0 ? "Asking Price" : "Sold For") +"</div></strong></td><td style='vertical-align:middle' height='45'><span>" + asking + "</span></td></tr></tbody></table><br>" + 
+					"</td></tr><tr><td colspan='2'><h4>Description"+  (sold==0 ? "<button type='button' class='btn btn-default btn-xs' id='d" + id + "' onClick='descriptEdit(this.id)'>Edit</button>" : "" ) + "</h4>" + 
 					"<div><span>" + description + "</span></div></td></tr></table>";
 	num += 1;
 	return toReturn;
@@ -40,7 +42,7 @@ function getBooks(email)
 		var books = $.parseJSON(data);
 		$.each(books,  function() {
 			arrIds[i++] = this["ID"];
-			toRet += printBook(this["ImageLink"], this["Title"], this["Author"], this["ISBN"], this["ItemShape"], this["Price"], this['Description']);
+			toRet += printBook(this["ImageLink"], this["Title"], this["Author"], this["ISBN"], this["ItemShape"], this["Price"], this['Description'], this['Sold']);
 		});
 	});
 	return toRet;
@@ -254,7 +256,7 @@ function updateUser(email, name, phone) {
 	});*/
 }
 
-function updateBook(title, author, isbn, condition, price, id)
+function updateBook(title, author, isbn, condition, price, id, sold)
 {
 	$.ajax({
 	type: "POST",
@@ -265,7 +267,8 @@ function updateBook(title, author, isbn, condition, price, id)
 				ISBN : isbn,
 				Condition : condition,
 				Price : price,
-				ID : id
+				ID : id,
+				Sold : sold
 			},
 	async: false
 	});/*.done( function( data ) {
@@ -274,6 +277,64 @@ function updateBook(title, author, isbn, condition, price, id)
 					toRet = printInfo("" + this["FName"] + this["LName"], this["Email"], this["Phone"], this["DCreated"], this["BooksForSale"], this["BooksSold"], rating);
 				});
 	});*/
+}
+
+function soldItem(id) {
+	var price = 0;
+	var stringToAdd = "";
+	height = $(window).height() * .25;
+	width = $(window).width() * .35;
+	var htmlCode = "<div class='ui-dialog'  title='Enter Price' >" +
+									
+										"How much did you sell this book for?" +
+										" <input type='text'>" +
+					"</div>";
+	$(htmlCode).dialog({
+			width : width,
+			height : height,
+			modal : true,
+			buttons : {
+				"Okay" : function() {
+					enter = true;
+					price = $('input').val();
+					$(this).dialog('close');
+					soldHelper(id, price);
+				},
+				"Cancel" : function() {
+					$(this).dialog('close');	
+				},
+			}
+		});
+}
+
+function soldHelper(id, price) {
+		var newid = id.substring(3,id.length);
+		var name = "#info" + newid + " span";
+		var info = new Array();
+		var i = 0;
+		$(name).each( function () {
+				var toget = "#textarea" + newid;
+				var temp = $(toget).val();
+				if(i == 4) {
+					$(this).html(price);
+				}
+				else {
+					$(this).html(temp);
+				}
+				info[i++] = temp;
+		});
+		$("#s" + newid).html("Sold For");
+		var button = "#" + newid;
+		$(button).attr('disabled', true);
+		$(button).attr('style', 'visibility:hidden');
+		$("#" + id).attr('disabled', true);
+		$("#" + id).attr('style', 'visibility:hidden');
+		$("#d" + newid).attr('disabled', true);
+		$("#d" + newid).attr('style', 'visibility:hidden');
+		var re = new RegExp("[0-9]");
+		var num = id.search(re);
+		var numID = parseInt(id.substring(num,id.length));
+		updateBook(info[0], info[1], info[2], info[3], price, arrIds[numID], 1);
 }
 
 function updateDescript(description, id)
@@ -309,6 +370,8 @@ function itemEdit(id)
 			var temp = $(this).text();
 			$(this).html("<textarea cols='75' id='textarea" + id + "' style='margin:0;resize:none;vertical-align:middle' rows=1 id='nametext'>" +temp+"</textarea>");
 		});
+		$("#bbt" + id).attr('disabled', false);
+		$("#bbt" + id).attr('style', '');
 	}
 	else if(buttontext == "Save")
 	{
@@ -322,7 +385,9 @@ function itemEdit(id)
 			info[count++] = temp;
 			$(this).html(temp);
 		});
-		updateBook(info[0], info[1], info[2], info[3], parseInt(info[4]), arrIds[numID]);
+		updateBook(info[0], info[1], info[2], info[3], parseInt(info[4]), arrIds[numID], 0);
+		$("#bbt" + id).attr('disabled', true);
+		$("#bbt" + id).attr('style', 'visibility:hidden');
 	}
 }
 
@@ -387,6 +452,40 @@ function Rating(friendly, price, availability, time, description) {
 	
 	this.getTotal = function() {
 		return (this.friendly + this.price + this.availability + this.time) / 4;
+	}
+}
+
+//Constructor for a book
+function Book(author, title, condition, price, id, ISBN) {
+	this.author = author;
+	this.title = title;
+	this.condition = condition;
+	this.price = price;
+	this.id = id;
+	this.isbn = ISBN;
+	
+	this.getAuthor = function() {
+		return this.author;
+	}
+	
+	this.getTitle = function() {
+		return this.title;
+	}
+	
+	this.getCondition = function() {
+		return this.condition;
+	}
+	
+	this.getPrice = function() {
+		return this.price;
+	}
+	
+	this.getId = function() {
+		return this.id;
+	}
+	
+	this.getISBN = function() {
+		return this.isbn;
 	}
 }
 

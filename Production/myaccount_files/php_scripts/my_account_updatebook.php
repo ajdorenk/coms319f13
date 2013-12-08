@@ -5,7 +5,7 @@
 	
 	$result=mysqli_query($conn,$query);
 	
-	$q2="update Item set ItemShape='".$_POST['Condition']."', Price=".$_POST['Price']." where ID=".$_POST['ID']."";
+	$q2="update Item set ItemShape='".$_POST['Condition']."', Price=".$_POST['Price'].", Sold=".$_POST['Sold']." where ID=".$_POST['ID']."";
 	
 	$r2=mysqli_query($conn,$q2);
 	
