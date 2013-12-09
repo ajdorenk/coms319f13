@@ -303,7 +303,7 @@ function soldItem(id) {
 	var price = 0;
 	var stringToAdd = "";
 	height = $(window).height() * .25;
-	width = $(window).width() * .35;
+	width = $(window).width() * .50;
 	var htmlCode = "<div class='ui-dialog'  title='Enter Price' >" +
 									
 										"How much did you sell this book for?" +
