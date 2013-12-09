@@ -1,13 +1,37 @@
 <!DOCTYPE html>
 
 <?PHP
+	if(empty($_GET['itemkey'])) {
+		echo "<script>window.top.location='ratingspage.php'</script>";
+	}
+
 	$conn=mysqli_connect("mysql.cs.iastate.edu","u31904","QWGCG6sfQ","db31904"); /*or die("Error " , mysqli_error($link));*/
 	
 	$query3="select * from Rating where ItemID='".$_GET['itemkey']."'";
 	
 	$result3=mysqli_query($conn,$query3);
 	
-	if(!empty($result3)) {
+	$friend = 3;
+	if(!empty($_GET['friendly']))
+		$friend = $_GET['friendly'];
+		
+	$available = 3;
+	if(!empty($_GET['available']))
+		$available = $_GET['available'];
+	
+	$price = 3;
+	if(!empty($_GET['price']))
+		$price = $_GET['price'];
+		
+	$time = 3;
+	if(!empty($_GET['time']))
+		$time = $_GET['time'];
+		
+	$comments = 3;
+	if(!empty($_GET['comments']))
+		$comments = $_GET['comments'];
+	
+	if(empty($result3)) {
 	
 		$query="select UEmail from Item where ID='".$_GET['itemkey']."'";
 		
@@ -16,7 +40,7 @@
 		$row = mysqli_fetch_row($result);
 		$email = $row[0];
 		
-		$query2="insert into Rating(UEmail, Friendly, Availability, Price, Time, Description, ItemID) values('".$email."','".$_GET['friendly']."', '".$_GET['available']."', '".$_GET['price']."','".$_GET['time']."', '".$_GET['comments']."','".$_GET['itemkey']."')";
+		$query2="insert into Rating(UEmail, Friendly, Availability, Price, Time, Description, ItemID) values('".$email."','".$friend."', '".$available."', '".$price."','".$time."', '".$comments."','".$_GET['itemkey']."')";
 		
 		$result2=mysqli_query($conn,$query2);
 	}
@@ -71,7 +95,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="index.php"><strong>TextbookTrader</strong></a>
+    <a class="navbar-brand" href="index.php">TextbookTrader</a>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
