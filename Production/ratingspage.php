@@ -103,7 +103,7 @@
 
 	<div class="col-md-10"  id="posthere">
 		<form  method='get'>
-			Item Key: <input type='text' name='itemkey'><br><br>
+			*Item Key: <input type='text' name='itemkey'><br><br>
 			<table class='table table-bordered' >
 				<thead>
 					<tr>
