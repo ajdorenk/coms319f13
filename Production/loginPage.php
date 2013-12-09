@@ -225,20 +225,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			<table id="form_table" class="form">
 
 			<form name="form1" method='post' action="index.php">
-				<tr>
+				<tr class = "spaceUnder">
 					<td>Email:</td>
 					<td><input id="username" type="text" name='username' width="250px"></td>
 				</tr>
-				<tr>
+				<tr class = "spaceUnder">
 					<td>Password:</td>
 					<td><input type="password" id="password" name='password' width="250px"></td>
 					<!-- <td><a>Forgot password?</a></td> -->
 				</tr>
 				<tr>
-					<td align="right"><button id="login" type="submit" name="Submit1" onclick="">Go!</button></td>
+					<td align="right"><button id="login" class="btn btn-primary" type="submit" name="Submit1" onclick="">Go!</button></td>
 			</form>
 					<form method="link" action="create_account.php">
-					<td><button id="new_user" type="submit" onclick="">Create an account</button></td>
+					<td><button id="new_user" class="btn btn-primary" type="submit" onclick="">Create an account</button></td>
 					</form>
 				</tr>
 			</table>

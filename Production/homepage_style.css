@@ -7,3 +7,8 @@ padding-left: 75px;
 .buttons {
 padding-left: 100px;
 }
+
+tr.spaceUnder > td
+{
+  padding-bottom: 1em;
+}
