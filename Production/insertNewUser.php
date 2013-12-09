@@ -9,7 +9,7 @@
 
 	$conn=mysqli_connect("mysql.cs.iastate.edu","u31904","QWGCG6sfQ","db31904"); 
 	
-	$query="INSERT INTO User VALUES ('".$fName."', '".$lName."', '".$email."', '".$phone."', '".$password."')";
+	$query="INSERT INTO User (FName, LName, Email, Phone, Password) VALUES ('".$fName."', '".$lName."', '".$email."', '".$phone."', '".$password."')";
 	
 	mysqli_query($conn,$query);
 	
