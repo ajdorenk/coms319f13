@@ -1,8 +1,8 @@
-var num = 0;
+//var num = 0;
 var mEmail = "";
 var arrIds = new Array();
 var booksArr = new Array();
-function printBook(src, title, author, isbn, condition, asking, description, sold)
+function printBook(src, title, author, isbn, condition, asking, description, sold, num)
 {
 	
 	var id = "edititem" + num;
@@ -17,12 +17,12 @@ function printBook(src, title, author, isbn, condition, asking, description, sol
 					"<tr><td style='vertical-align:middle' height='45'><strong><div id='s" + id +"'>" + (sold==0 ? "Asking Price" : "Sold For") +"</div></strong></td><td style='vertical-align:middle' height='45'><span>" + asking + "</span></td></tr></tbody></table><br>" + 
 					"</td></tr><tr><td colspan='2'><h4>Description"+  (sold==0 ? "<button type='button' class='btn btn-default btn-xs' id='d" + id + "' onClick='descriptEdit(this.id)'>Edit</button>" : "" ) + "</h4>" + 
 					"<div><span>" + description + "</span></div></td></tr></table>";
-	num += 1;
+	//num += 1;
 	return toReturn;
 	/*return "balls";*/
 }
 
-function getBooks(email)
+function getBooks(email, print)
 {
 	var toRet = "";
 	var i = 0;
@@ -41,10 +41,30 @@ function getBooks(email)
 	}).done( function( data ) {
 		var books = $.parseJSON(data);
 		$.each(books,  function() {
-			arrIds[i++] = this["ID"];
-			toRet += printBook(this["ImageLink"], this["Title"], this["Author"], this["ISBN"], this["ItemShape"], this["Price"], this['Description'], this['Sold']);
+			arrIds[i] = this["ID"];
+			//toRet += printBook(this["ImageLink"], this["Title"], this["Author"], this["ISBN"], this["ItemShape"], this["Price"], this['Description'], this['Sold']);
+			booksArr[i++] = new Book(this["Author"], this["Title"], this["ItemShape"], this["Price"], this["ID"], this["ISBN"], i, this['Sold'], this['Description'], this["ImageLink"]);
 		});
 	});
+	//alert(printBooks());
+	//booksArr.sort(compareSold);
+	if(print == 1)
+		return printBooks();
+}
+
+function printBooks() {
+	for(var i = 0; i < booksArr.length; i++) {
+		var toRem = "#tabdedititem" + booksArr[i].getTid();
+		$(toRem).remove();
+		//alert(toRem);
+	//	$("#posthere").remove( toRem );
+	}
+	//$("#posthere").empty();
+	var toRet = "";
+	for(var i = 0; i < booksArr.length; i++) {
+		//alert(printBook(booksArr[i].getImage(), booksArr[i].getTitle(), booksArr[i].getAuthor(), booksArr[i].getISBN(), booksArr[i].getCondition(), booksArr[i].getPrice(), booksArr[i].getDescript(), booksArr[i].getSold(), booksArr[i].getTid()));
+		toRet += printBook(booksArr[i].getImage(), booksArr[i].getTitle(), booksArr[i].getAuthor(), booksArr[i].getISBN(), booksArr[i].getCondition(), booksArr[i].getPrice(), booksArr[i].getDescript(), booksArr[i].getSold(), booksArr[i].getTid());
+	}
 	return toRet;
 }
 
@@ -62,14 +82,14 @@ function printInfo(name, email, phone, created, sale, sold, rating)
 				"Last Name:<br>Email Address:<br>Date Created:<br></p>-->" +
 				"</td><td style='width:50%; height:100%'>" +
 				"<table class='table table-bordered' style='width:100%; height:100%'><col width='75%'><col width='25%'><thead><tr><th colspan='2'>" +
-				"Seller Information <a href='newItem.php'><button type='button' class='btn btn-default btn-xs'>Add Item</button></a></th></tr></thead><tbody><tr><td style='vertical-align:middle' height='45'><strong>Number of Books for Sale</strong></td>" +
+				"Seller Information </th></tr></thead><tbody><tr><td style='vertical-align:middle' height='45'><strong>Number of Books for Sale</strong></td>" +
 				"<td style='vertical-align:middle' height='45'>" + sale + "</td></tr><tr>" +
 				"<td style='vertical-align:middle' height='45'><strong>Number of Books Sold</strong></td><td style='vertical-align:middle' height='45'>" + sold + "</td></tr><tr>" +
 				"<td style='vertical-align:middle' height='45'><strong>Current Seller Rating</strong></td><td style='vertical-align:middle' height='45'>" + rating + "/5.0</td></tr><tr>" +
 				"<td style='vertical-align:middle' height='45'><strong>View Rating</strong></td><td style='vertical-align:middle' height='45'><button type='button' id='viewrate' class='btn btn-default btn-xs'>View</button></td></tr></tbody></table>" +
 				"<!--<p style='padding-left:1em; line-height:2.0em'>Seller Information: edit<br>" +
 				"Number of Books for Sale: <br>Number of Books Sold:<br>Current Seller Rating:" +
-				"View Rating:<button type='button' id='viewrate' class='btn btn-default btn-xs'>View</button><br></p>--></td></tr></table><br>";
+				"View Rating:<button type='button' id='viewrate' class='btn btn-default btn-xs'>View</button><br></p>--></td></tr></table>";
 	return toReturn;
 }
 
@@ -334,7 +354,15 @@ function soldHelper(id, price) {
 		var re = new RegExp("[0-9]");
 		var num = id.search(re);
 		var numID = parseInt(id.substring(num,id.length));
-		updateBook(info[0], info[1], info[2], info[3], price, arrIds[numID], 1);
+		var ids = 0;
+		for(var i = 0; i < booksArr.length; i++) {
+			if(numID == booksArr[i].getTid()) {
+				ids = booksArr[i].getId();
+				booksArr[i].setSold();
+				break;
+			}	
+		}
+		updateBook(info[0], info[1], info[2], info[3], price, ids, 1);
 }
 
 function updateDescript(description, id)
@@ -385,7 +413,14 @@ function itemEdit(id)
 			info[count++] = temp;
 			$(this).html(temp);
 		});
-		updateBook(info[0], info[1], info[2], info[3], parseInt(info[4]), arrIds[numID], 0);
+		var ids = 0;
+		for(var i = 0; i < booksArr.length; i++) {
+			if(numID == booksArr[i].getTid()) {
+				ids = booksArr[i].getId();
+				break;
+			}	
+		}
+		updateBook(info[0], info[1], info[2], info[3], parseInt(info[4]), ids, 0);
 		$("#bbt" + id).attr('disabled', true);
 		$("#bbt" + id).attr('style', 'visibility:hidden');
 	}
@@ -418,7 +453,14 @@ function descriptEdit(id)
 			info = temp;
 			$(this).html(temp);
 		});
-		updateDescript(info, arrIds[numID]);
+		var ids = 0;
+		for(var i = 0; i < booksArr.length; i++) {
+			if(numID == booksArr[i].getTid()) {
+				ids = booksArr[i].getId();
+				break;
+			}	
+		}
+		updateDescript(info, ids);
 	}
 }
 
@@ -456,13 +498,17 @@ function Rating(friendly, price, availability, time, description) {
 }
 
 //Constructor for a book
-function Book(author, title, condition, price, id, ISBN) {
+function Book(author, title, condition, price, id, ISBN, t, sold, desc, i) {
 	this.author = author;
 	this.title = title;
 	this.condition = condition;
 	this.price = price;
 	this.id = id;
 	this.isbn = ISBN;
+	this.tid = t;
+	this.sold = sold;
+	this.descript = desc;
+	this.img = i;
 	
 	this.getAuthor = function() {
 		return this.author;
@@ -486,6 +532,26 @@ function Book(author, title, condition, price, id, ISBN) {
 	
 	this.getISBN = function() {
 		return this.isbn;
+	}
+	
+	this.getTid = function() {
+		return this.tid;
+	}
+	
+	this.getSold = function() {
+		return this.sold;
+	}
+	
+	this.getDescript = function() {
+		return this.descript;
+	}
+	
+	this.getImage = function() {
+		return this.img;
+	}
+	
+	this.setSold = function() {
+		this.sold = 1;
 	}
 }
 
@@ -514,6 +580,43 @@ $(document).ready( function() {
 	$('#edituser').click( function () { editFunc(); });
 	$('#viewrate').click( function () { displayModal(); });
 });
+
+
+//COMPARE METHODS
+function compareSale(a,b){
+	return a.getSold() - b.getSold();
+}
+
+function compareSold(a,b){
+	return b.getSold() - a.getSold();
+}
+
+function comparePriceHigh(a, b) {
+	return b.getPrice() - a.getPrice();
+}
+
+function comparePriceLow(a, b) {
+	return a.getPrice() - b.getPrice();
+}
+
+function onSelectType() {
+	getBooks(mEmail, 0);
+	var type = $("#item_type").val();
+	//var type = selector.value;
+	//alert(type);
+	if(type == "For Sale First") {
+		booksArr.sort(compareSale);
+	}
+	else if(type == "Sold First") {
+		booksArr.sort(compareSold);
+	}else if(type == "Highest Price First") {
+		booksArr.sort(comparePriceHigh);
+	}else if(type == "Lowest Price First") {
+		booksArr.sort(comparePriceLow);
+	}
+	var ap = printBooks();
+	$("#posthere").append(ap);
+}
 /*
 "<div class='panel panel-default' id='items'><div class='panel-body' id='centerdiv' ><div id='picture' class='col-md-3'>" + 
 					"<img id='pictureimg' src=" + src + ">" +

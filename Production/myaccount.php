@@ -120,9 +120,27 @@
 		//alert(getUser("bpassini@iastate.edu"));
 		var email = "<?php echo $_SESSION['Email']; ?>";
 		$("#posthere").append(getUser(email));
+		</script>
+		<div class="col-md-7">
+		<label class="">Order of Books:</label>
+		<select id="item_type" onchange="onSelectType()">
+			<option value=null></option>
+			<option value="Sold First">Sold First</option>
+			<option value="For Sale First">For Sale First</option>
+			<option value="Highest Price First">Highest Price First</option>
+			<option value="Lowest Price First">Lowest Price First</option>
+		</select>
+		</div>
+		<div>
+		<label class="">Add an Item:</label>
+		<a href='newItem.php' class=""><button type='button' class='btn btn-default btn-xs'>Add</button></a>  
+		</div>
+		<br>
+		<script type="text/javascript">
 		//$("#posthere").append("<a href='newItem.php'><button type='button' class='btn btn-default btn-default'>Add Item</button></a>");
-		$("#posthere").append(getBooks(email));
-	</script>
+		$("#posthere").append(getBooks(email, 1));
+		</script>
+	
 	</div>
 </div>
   <div class="footer">
