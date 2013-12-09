@@ -330,7 +330,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         $.ajax({
           type: "POST",
-          url: "sendmessage.php",
+          url: "sms-rest.php",
           data: {
             Price : price,
             Description : description,
