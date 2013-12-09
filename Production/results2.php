@@ -1,10 +1,9 @@
-
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Search Results</title>
 <link href="resultsStyle.css" rel="stylesheet" type="test/css">
-<!--<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>-->
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script src="../bootstrap/bootstrap.min.js"></script>
 <script src="../bootstrap/carousel.js"></script>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -15,16 +14,13 @@
 ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it needs to correct extra whiltespace between the links */
 </style>
 <![endif]-->
-<!--<<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 <?php
 session_start();
 ?>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script>  var $itemAllArr = new Array(); </script>
-<script src='myaccount_files/jquery_ui/jquery-ui.js'></script>
-<link rel="stylesheet" href='myaccount_files/jquery_ui/jquery-ui.css'>
 <?php
 include("AmazonECS.class.php");
 
@@ -192,7 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 }
 ?>
- <script type="text/javascript">
+ <script>
 
 //   // $itemAllArr[0] = {itemName: 'Discrete Mathematics with Applications', 
 //   //   itemDescripShort: "Used for Cpr E 310", itemPrice: 90};
@@ -218,9 +214,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
       $returnStr += "<table class='table table-striped'>";
       $returnStr += "<thead><tr><th>Image</th><th>Item Name</th><th>Description</th>";
-      $returnStr += "<th>Price</th>";
-      $returnStr += "<th>Contact Seller</th";
-      $returnStr += "</tr></thead>";
+      $returnStr += "<th>Price</th></tr></thead>";
 
       for(var $i = 0; $i<$itemAllArr.length; $i++) {
         
@@ -236,7 +230,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $returnStr += "<td>" + $itemAllArr[$i]['itemName'] + "</td>";
         $returnStr += "<td>" + $itemAllArr[$i]['itemDescripShort'] + "</td>";
         $returnStr += "<td>$" + $itemAllArr[$i]['itemPrice'] + "</td>";
-        $returnStr += "<td> <button onclick='contactModule(this.id)' id='"+$i+"'>Contact Seller</button>";
         $returnStr += "</tr>";
 
       }
@@ -292,57 +285,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
       return $returnStr;
 
     } 
-
-    function contactModule(num)
-    {
-
-      //alert(num);
-      
-      var height = $(window).height() * .75;
-      var width = $(window).width() * .45;
-
-     var htmlCode = "<div class='ui-dialog'  title='Contact Seller' >" +
-                    "<div>"+
-                      "<p>Enter your phone number without dashes, your email address, or both.</p>" +
-                      "<form action='sendmessage.php'>"+
-                        "Email: <input type='text' id='buyer' name='buyer'><br>"+
-                        "Phone number: <input type='text' id='number' name='number'>"+
-                        "<button type='button' onclick='callSender("+num+")'>Contact Seller</button>"+
-
-                      "</form>"+
-
-                    "</div></div>"; 
-      $(htmlCode).dialog({
-          width : width,
-          height : height,
-          modal : true
-        });
-    }
-
-    function callSender(num)
-    {
-        var $id = parseInt(num);
-        var price = $itemAllArr[$id]['itemPrice'];
-        var description = $itemAllArr[$id]['itemDescripShort'];
-        var name = $itemAllArr[$id]['itemName'];
-        var email = $("#buyer").val();
-        var number = $("#number").val();
-
-        $.ajax({
-          type: "POST",
-          url: "sendmessage.php",
-          data: {
-            Price : price,
-            Description : description,
-            Name : name,
-            buyer : email,
-            number : number},
-            async: false
-
-          }).done( function( data ) {
-            alert(data);
-          });
-    }
  </script>  
 
 <!-- <script language="JavaScript" type="text/javascript" src="resultsScript.js"></script> -->
