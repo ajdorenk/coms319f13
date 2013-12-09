@@ -31,7 +31,7 @@
 	if(!empty($_GET['comments']))
 		$comments = $_GET['comments'];
 	
-	if(empty($result3)) {
+	if(!empty($result3)) {
 	
 		$query="select UEmail from Item where ID='".$_GET['itemkey']."'";
 		
