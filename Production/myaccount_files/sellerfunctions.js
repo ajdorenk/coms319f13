@@ -40,7 +40,6 @@ function getBooks(email, print)
 				}*/
 	}).done( function( data ) {
 		var books = $.parseJSON(data);
-		alert(data);
 		$.each(books,  function() {
 			arrIds[i] = this["ID"];
 			//toRet += printBook(this["ImageLink"], this["Title"], this["Author"], this["ISBN"], this["ItemShape"], this["Price"], this['Description'], this['Sold']);
