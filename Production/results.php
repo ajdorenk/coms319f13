@@ -354,6 +354,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         url: 'logout.php',
         method: 'POST', // or GET
         success: function(data) {
+          alert(data);
+          location.reload();
           // alert(data);
           // alert("logged out");
           // window.top.location='results.php';

@@ -231,8 +231,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 				</tr>
 				<tr>
 					<td>Password:</td>
-					<td><input id="password" type="password" name='password' width="250px"></td>
-					<td><a>Forgot password?</a></td>
+					<td><input type="password" id="password" name='password' width="250px"></td>
+					<!-- <td><a>Forgot password?</a></td> -->
 				</tr>
 				<tr>
 					<td align="right"><button id="login" type="submit" name="Submit1" onclick="">Go!</button></td>

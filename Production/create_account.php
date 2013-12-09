@@ -77,6 +77,7 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 				async: false
 			});
 			 alert("Account created!");
+			 window.location = "loginpage.php";
 			 //then go to home page.
 		}
 		else
@@ -231,11 +232,11 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 		</tr>
 		<tr class="spaceUnder">
 			<td><label id="l_password">*Password: </label></td>
-			<td><input type="text" id="password"></td>
+			<td><input type="password" id="password"></td>
 		</tr>
 		<tr class="spaceUnder">
 			<td><label id="l_confirm">*Confirm Password: </label></td>
-			<td><input type="text" id="confirm_password"></td>
+			<td><input type="password" id="confirm_password"></td>
 		</tr>
 		<tr class="spaceUnder">
 			<td><label id="l_phone"> Phone #: </label></td>
@@ -243,7 +244,7 @@ ul.nav a { zoom: 1; }  /* the zoom property gives IE the hasLayout trigger it ne
 		</tr>
 		<tr class="spaceUnder">
 			<td></td>
-			<td align="right"><input type="submit" value="Create" onclick="submit()"></td>
+			<td align="right"><input type="submit" class="btn btn-primary" value="Create" onclick="submit()"></td>
 		</tr>
 	</table>
 	<!--<form class="myForm" style="text-align:center">
