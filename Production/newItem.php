@@ -121,7 +121,7 @@
 			var author;
 			$.get("executeAmazonAPI.php", {"isbn": isbn}, function (resp) {
 				var myVar = resp;
-				alert(myVar[2]);
+				// alert(myVar[2]);
 				var size = myVar[2];
 				if(size > 1){
 					document.getElementById("img_file").value = myVar[0];
